@@ -44,17 +44,11 @@ function loadcss(filename){
 }
 
 function init(){
-//	startSpinner();
-	hide('#config_network');
-	hide('#config_sysmology');
-	hide('#sysmology');
-	hide('#network');
-	show('#welcome');
+	startSpinner();
+	visualTweaker();
 	readData();
-//	remove();
-//	$.getScript("./googlemaps.js");
+	$('#welcome').removeAttr('style');
 //	$('#mainwrap').outerHeight($(window).outerHeight() - $('#header').outerHeight() - $('#footer').outerHeight());
-//	while(!stuff);	
 //	stopSpinner();
 }
 

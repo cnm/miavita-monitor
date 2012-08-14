@@ -68,8 +68,8 @@ html, body{
 
 /* All the rest */
 #googleMaps{
-	width:720px;
-	height:530px;
+	width:920px;
+	height:540px;
 	margin-left : auto;
 	margin-right : auto;
 	margin-top: 1%;
@@ -98,7 +98,7 @@ html, body{
 /* conteudo real da Main Frame */
 .frame{
 	margin-left: 220px;
-	height:550px;
+	height:560px;
 	background:#fff;
 	border:1px solid #ccc;
 	border-radius:5px;

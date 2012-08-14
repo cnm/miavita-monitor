@@ -17,7 +17,7 @@ function info() {
 		context: document.body,
 		dataType: "text", // why not json? can't really figure out!
 		success: function(parsedData){
-	    			rawdata = jsonParse(parsedData);
+	    			rawdata = jsonParse(parsedData); //alterar isto
 				alert(rawdata);
 				//retrieveDates();
 	  		}
@@ -27,7 +27,7 @@ function info() {
 function readData() {
 
 	$.get("miavita.json", function(parsedData){
-	    			rawdata = jsonParse(parsedData);
+	    			rawdata = jQuery.parseJSON(parsedData);
 				fillContents();
 				//retrieveDates();
 	  		});

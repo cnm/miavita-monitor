@@ -14,8 +14,7 @@
 		<link rel="stylesheet" href="./jquery-ui-1.8.22.custom/development-bundle/themes/base/jquery.ui.all.css">
 		<link rel="stylesheet" href="./style.css" />
 		<!-- Include the Google Maps,jQuery and jQueryEasyUI libs and the Json Parser-->
-       		<script src="./jquery-1.7.2.min.js"></script>
-		<script src="./json_sans_eval.js"></script>
+       		<script src="./jquery-1.8.0.min.js"></script>
 		<script src="./jquery-ui-1.8.22.custom/js/jquery-ui-1.8.22.custom.min.js"></script>
 		<script src="./jquery-ui-sliderAccess.js"></script>		
 		<script src="./jquery-ui-timepicker-addon.js"></script>
@@ -111,7 +110,7 @@
 				</div>
 
 				<div class="frame">
-					<div id="welcome" style="display:none; opacity:0.5; background:#fafafa;">
+					<div id="welcome" style="display:none; opacity:0.5;">
 						<div class="title">
 							Welcome
 						</div>
@@ -129,67 +128,66 @@
 							<br>
 						</div>
 
-						<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+						<div id="uptimeGraph" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 					</div>
 					<div id="config_sysmology">
 						<span class="easyui-layout">
 							<div region="north" class="title" border="false">
 								Configuration &rarr; Sysmology
 							</div>
-							<div region="center" border="false" style="height:500px">
-								<div id="configSysmologyPortal" style="position:relative">
-									<div style="width:20%;">
-										<div title="Save/Load" iconCls="icon-save" collapsible="true" style="height:100px;padding:10px;">
-											<a class="easyui-linkbutton" href="javascript:void(0)" onclick="load()">Load</a><br>
-											<a class="easyui-linkbutton" href="javascript:void(0)" onclick="save()">Save</a>
-										</div>
-										<div title="Select Node(s)" collapsible="true" style="text-align:left;height:340px;padding:5px;">
-											<form name="sysmologyNodes">
-												<input type="checkbox" name="sysmologyNode1" id="sysmologyNode1" /> <label for="sysmologyNode1">Node 1</label><br>
-												<input type="checkbox" name="sysmologyNode2" id="sysmologyNode2" /> <label for="sysmologyNode2">Node 2</label><br>
-												<input type="checkbox" name="sysmologyNode3" id="sysmologyNode3" /> <label for="sysmologyNode3">Node 3</label><br>
-												<input type="checkbox" name="sysmologyNode4" id="sysmologyNode4" /> <label for="sysmologyNode4">Node 4</label><br>
-												<input type="checkbox" name="sysmologyNode5" id="sysmologyNode5" /> <label for="sysmologyNode5">Node 5</label><br>
-												<input type="checkbox" name="sysmologyNode6" id="sysmologyNode6" /> <label for="sysmologyNode6">Node 6</label><br>
-												<input type="checkbox" name="sysmologyNode7" id="sysmologyNode7" /> <label for="sysmologyNode7">Node 7</label><br>
-												<input type="checkbox" name="sysmologyNode8" id="sysmologyNode8" /> <label for="sysmologyNode8">Node 8</label><br>
-												<input type="checkbox" name="sysmologyNode9" id="sysmologyNode9" /> <label for="sysmologyNode9">Node 9</label><br>
-												<input type="checkbox" name="sysmologyNode10" id="sysmologyNode10" /> <label for="sysmologyNode10">Node 10</label><br>
-												<input type="checkbox" name="sysmologyNode11" id="sysmologyNode11" /> <label for="sysmologyNode11">Node 11</label><br>
-												<input type="checkbox" name="sysmologyNode12" id="sysmologyNode12" /> <label for="sysmologyNode12">Node 12</label><br>
-												<input type="checkbox" name="sysmologyNode13" id="sysmologyNode13" /> <label for="sysmologyNode13">Node 13</label><br>
-											</form>
-											<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('sysmologyNode')">(Un)Select All</a>
-										</div>
+							<div id="configSysmologyPortal" region="center" border="false" style="height:500px">
+								<div style="width:20%;">
+									<div title="Select Node(s)" collapsible="true" style="text-align:left;height:340px;padding:5px;">
+										<form name="sysmologyNodes">
+											<input type="checkbox" name="sysmologyNode1" id="sysmologyNode1" /> <label for="sysmologyNode1">Node 1</label><br>
+											<input type="checkbox" name="sysmologyNode2" id="sysmologyNode2" /> <label for="sysmologyNode2">Node 2</label><br>
+											<input type="checkbox" name="sysmologyNode3" id="sysmologyNode3" /> <label for="sysmologyNode3">Node 3</label><br>
+											<input type="checkbox" name="sysmologyNode4" id="sysmologyNode4" /> <label for="sysmologyNode4">Node 4</label><br>
+											<input type="checkbox" name="sysmologyNode5" id="sysmologyNode5" /> <label for="sysmologyNode5">Node 5</label><br>
+											<input type="checkbox" name="sysmologyNode6" id="sysmologyNode6" /> <label for="sysmologyNode6">Node 6</label><br>
+											<input type="checkbox" name="sysmologyNode7" id="sysmologyNode7" /> <label for="sysmologyNode7">Node 7</label><br>
+											<input type="checkbox" name="sysmologyNode8" id="sysmologyNode8" /> <label for="sysmologyNode8">Node 8</label><br>
+											<input type="checkbox" name="sysmologyNode9" id="sysmologyNode9" /> <label for="sysmologyNode9">Node 9</label><br>
+											<input type="checkbox" name="sysmologyNode10" id="sysmologyNode10" /> <label for="sysmologyNode10">Node 10</label><br>
+											<input type="checkbox" name="sysmologyNode11" id="sysmologyNode11" /> <label for="sysmologyNode11">Node 11</label><br>
+											<input type="checkbox" name="sysmologyNode12" id="sysmologyNode12" /> <label for="sysmologyNode12">Node 12</label><br>
+											<input type="checkbox" name="sysmologyNode13" id="sysmologyNode13" /> <label for="sysmologyNode13">Node 13</label><br>
+										</form>
+										<br/>
+										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('sysmologyNode')">(Un)Select All</a>
 									</div>
-									<div style="width:40%;">
-										<div title="Choose Units" collapsible="true" closable="true" style="height:200px;">
-											<from name="units">
-												<input type="radio" name="MHz" value="MHz"/>MHz<br>
-												<input type="radio" name="KHz" value="KHz"/>KHz<br>
-												<input type="radio" name="Hz" value="Hz"/>Hz<br>
-											</from>
-										</div>
-										<div title="Other" collapsible="true" closable="true" style="height:200px;">
-											<form name="sysmologyOtherForm">
-												<input type="checkbox" name="sysmologyPresentTooltips" id="sysmologyPresentTooltips" /> <label for="sysmologyPresentTooltips">Present Tooltips</label><br>
-												<input type="checkbox" name="sysmologyShowEffects" id="sysmologyShowEffects" /> <label for="sysmologyShowEffects">Show Effects and Animations</label><br>
-											</form>
-										</div>
+									<div title="Save/Load" iconCls="icon-save" collapsible="true" style="height:100px;padding:10px;">
+										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="load()">Load</a><br>
+										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="save()">Save</a>
+									</div>								
+								</div>
+								<div style="width:40%;">
+									<div title="Choose Units" collapsible="true" closable="true" style="height:200px;">
+										<from name="units">
+											<input type="radio" name="MHz" value="MHz"/>MHz<br>
+											<input type="radio" name="KHz" value="KHz"/>KHz<br>
+											<input type="radio" name="Hz" value="Hz"/>Hz<br>
+										</from>
 									</div>
-									<div style="width:40%;">
-										<div title="Time Range" iconCls="icon-calendar" collapsible="true" closable="true" style="height:200px;padding:5px;">
-											<div style="width:170px;">
-												<label for="sysfrom">From</label>
-												<input type="text" id="sysfrom" name="sysfrom" require/>
-												<br>
-												<label for="systo">to</label>
-												<input type="text" id="systo" name="systo" require/>
-											</div>
-											<from name="realtime">
-												<input type="checkbox" name="RT" id="sysmoRT"/> <label for="sysmoRT">Real-Time Sampling</label><br>
-											</from>
+									<div title="Other" collapsible="true" closable="true" style="height:200px;">
+										<form name="sysmologyOtherForm">
+											<input type="checkbox" name="sysmologyPresentTooltips" id="sysmologyPresentTooltips" /> <label for="sysmologyPresentTooltips">Present Tooltips</label><br>
+											<input type="checkbox" name="sysmologyShowEffects" id="sysmologyShowEffects" /> <label for="sysmologyShowEffects">Show Effects and Animations</label><br>
+										</form>
+									</div>
+								</div>
+								<div style="width:40%;">
+									<div title="Time Range" iconCls="icon-calendar" collapsible="true" closable="true" style="height:200px;padding:5px;">
+										<div style="width:170px;">
+											<label for="sysfrom">From</label>
+											<input type="text" id="sysfrom" name="sysfrom" require/>
+											<br>
+											<label for="systo">to</label>
+											<input type="text" id="systo" name="systo" require/>
 										</div>
+										<from name="realtime">
+											<input type="checkbox" name="RT" id="sysmoRT"/> <label for="sysmoRT">Real-Time Sampling</label><br>
+										</from>
 									</div>
 								</div>
 							</div>
@@ -200,60 +198,58 @@
 							<div region="north" class="title" border="false">
 								Configuration &rarr; Network
 							</div>
-							<div region="center" border="false" style="height:500px">
-								<div id="configNetworkPortal">
-									<div style="width:20%;">
-										<div title="Save/Load" iconCls="icon-save" collapsible="true" style="height:100px;padding:10px;">
-											<a class="easyui-linkbutton" href="javascript:void(0)" onclick="load()">Load</a><br>
-											<a class="easyui-linkbutton" href="javascript:void(0)" onclick="save()">Save</a>
-										</div>
-										<div title="Select Node(s)" collapsible="true" style="text-align:left;height:340px;padding:5px;">
-											<form name="networkNodes">
-												<input type="checkbox" name="networkNode1" id="networkNode1" /> <label for="networkNode1">Node 1</label><br>
-												<input type="checkbox" name="networkNode2" id="networkNode2" /> <label for="networkNode2">Node 2</label><br>
-												<input type="checkbox" name="networkNode3" id="networkNode3" /> <label for="networkNode3">Node 3</label><br>
-												<input type="checkbox" name="networkNode4" id="networkNode4" /> <label for="networkNode4">Node 4</label><br>
-												<input type="checkbox" name="networkNode5" id="networkNode5" /> <label for="networkNode5">Node 5</label><br>
-												<input type="checkbox" name="networkNode6" id="networkNode6" /> <label for="networkNode6">Node 6</label><br>
-												<input type="checkbox" name="networkNode7" id="networkNode7" /> <label for="networkNode7">Node 7</label><br>
-												<input type="checkbox" name="networkNode8" id="networkNode8" /> <label for="networkNode8">Node 8</label><br>
-												<input type="checkbox" name="networkNode9" id="networkNode9" /> <label for="networkNode9">Node 9</label><br>
-												<input type="checkbox" name="networkNode10" id="networkNode10" /> <label for="networkNode10">Node 10</label><br>
-												<input type="checkbox" name="networkNode11" id="networkNode11" /> <label for="networkNode11">Node 11</label><br>
-												<input type="checkbox" name="networkNode12" id="networkNode12" /> <label for="networkNode12">Node 12</label><br>
-												<input type="checkbox" name="networkNode13" id="networkNode13" /> <label for="networkNode13">Node 13</label><br>
-											</form>
-											<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('networkNode')">(Un)Select All</a>
-										</div>
+							<div id="configNetworkPortal" region="center" border="false" style="height:500px">
+								<div style="width:20%;">
+									<div title="Save/Load" iconCls="icon-save" collapsible="true" style="height:100px;padding:10px;">
+										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="load()">Load</a><br>
+										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="save()">Save</a>
 									</div>
-									<div style="width:40%;">
-										<div title="Choose Units" collapsible="true" closable="true" style="height:200px;">
-											<from name="units">
-												<input type="radio" name="MHz" value="MHz"/>MHz<br>
-												<input type="radio" name="KHz" value="KHz"/>KHz<br>
-												<input type="radio" name="Hz" value="Hz"/>Hz<br>
-											</from>
-										</div>
-										<div title="Other" collapsible="true" closable="true" style="height:200px;">
-											<form name="networkOtherForm">
-												<input type="checkbox" name="networkPresentTooltips" id="networkPresentTooltips" /> <label for="networkPresentTooltips">Present Tooltips</label><br>
-												<input type="checkbox" name="networkShowEffects" id="networkShowEffects" /> <label for="networkShowEffects">Show Effects and Animations</label><br>
-											</form>
-										</div>
+									<div title="Select Node(s)" collapsible="true" style="text-align:left;height:340px;padding:5px;">
+										<form name="networkNodes">
+											<input type="checkbox" name="networkNode1" id="networkNode1" /> <label for="networkNode1">Node 1</label><br>
+											<input type="checkbox" name="networkNode2" id="networkNode2" /> <label for="networkNode2">Node 2</label><br>
+											<input type="checkbox" name="networkNode3" id="networkNode3" /> <label for="networkNode3">Node 3</label><br>
+											<input type="checkbox" name="networkNode4" id="networkNode4" /> <label for="networkNode4">Node 4</label><br>
+											<input type="checkbox" name="networkNode5" id="networkNode5" /> <label for="networkNode5">Node 5</label><br>
+											<input type="checkbox" name="networkNode6" id="networkNode6" /> <label for="networkNode6">Node 6</label><br>
+											<input type="checkbox" name="networkNode7" id="networkNode7" /> <label for="networkNode7">Node 7</label><br>
+											<input type="checkbox" name="networkNode8" id="networkNode8" /> <label for="networkNode8">Node 8</label><br>
+											<input type="checkbox" name="networkNode9" id="networkNode9" /> <label for="networkNode9">Node 9</label><br>
+											<input type="checkbox" name="networkNode10" id="networkNode10" /> <label for="networkNode10">Node 10</label><br>
+											<input type="checkbox" name="networkNode11" id="networkNode11" /> <label for="networkNode11">Node 11</label><br>
+											<input type="checkbox" name="networkNode12" id="networkNode12" /> <label for="networkNode12">Node 12</label><br>
+											<input type="checkbox" name="networkNode13" id="networkNode13" /> <label for="networkNode13">Node 13</label><br>
+										</form>
+										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('networkNode')">(Un)Select All</a>
 									</div>
-									<div style="width:40%;">
-										<div title="Time Range" iconCls="icon-calendar" collapsible="true" closable="true" style="height:200px;padding:5px;">
-											<div style="width:170px;">
-												<label for="netfrom">From</label>
-												<input type="text" id="netfrom" name="netfrom" require/>
-												<br>
-												<label for="netto">to</label>
-												<input type="text" id="netto" name="netto" require/>
-											</div>
-											<from name="realtime">
-												<input type="checkbox" name="RT" id="networkRT"/> <label for="networkRT">Real-Time Sampling</label><br>
-											</from>
+								</div>
+								<div style="width:40%;">
+									<div title="Choose Units" collapsible="true" closable="true" style="height:200px;">
+										<from name="units">
+											<input type="radio" name="MHz" value="MHz"/>MHz<br>
+											<input type="radio" name="KHz" value="KHz"/>KHz<br>
+											<input type="radio" name="Hz" value="Hz"/>Hz<br>
+										</from>
+									</div>
+									<div title="Other" collapsible="true" closable="true" style="height:200px;">
+										<form name="networkOtherForm">
+											<input type="checkbox" name="networkPresentTooltips" id="networkPresentTooltips" /> <label or="networkPresentTooltips">Present Tooltips</label><br>
+											<input type="checkbox" name="networkShowEffects" id="networkShowEffects" /> <label for="networkShowEffects">Show Effects and Animations</label><br>
+										</form>
+									</div>
+								</div>
+								<div style="width:40%;">
+									<div title="Time Range" iconCls="icon-calendar" collapsible="true" closable="true" style="height:200px;padding:5px;">
+										<div style="width:170px;">
+											<label for="netfrom">From</label>
+											<input type="text" id="netfrom" name="netfrom" require/>
+											<br>
+											<label for="netto">to</label>
+											<input type="text" id="netto" name="netto" require/>
 										</div>
+										<from name="realtime">
+											<input type="checkbox" name="RT" id="networkRT"/> <label for="networkRT">Real-Time Sampling</label><br>
+										</from>
 									</div>
 								</div>
 							</div>
@@ -264,12 +260,46 @@
 							<div region="north" class="title" border="false">
 								View &rarr; Sysmology
 							</div>
-							<div region="center" border="false" style="height:500px">
-								<div id="sysmologyViewPortal" style="position:relative">
-									<div style="width:100%;">
-										<div id="coco" title="Searching" iconCls="icon-search" closable="true" style="height:80px;padding:10px;">
-											coxcococcoufougo
-										</div>
+							<div id="sysmologyViewPortal" region="center" border="false" style="height:500px">
+								<div style="width:100%;">
+									<div id="sysmologyPanelNode1" title="Node 1" closable="false" collapsible="true">
+										<div id="sysmologyGraphNode1">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode2" title="Node 2" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode2">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode3" title="Node 3" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode3">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode4" title="Node 4" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode4">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode5" title="Node 5" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode5">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode6" title="Node 6" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode6">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode7" title="Node 7" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode7">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode8" title="Node 8" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode8">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode9" title="Node 9" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode9">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode10" title="Node 10" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode10">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode11" title="Node 11" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode11">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode12" title="Node 12" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode12">[Something wrong regarding Highcharts lib]</div><br/>
+									</div>
+									<div id="sysmologyPanelNode13" title="Node 13" closable="false" collapsible="true" >
+										<div id="sysmologyGraphNode13">[Something wrong regarding Highcharts lib]</div><br/>
 									</div>
 								</div>
 							</div>
@@ -281,12 +311,46 @@
 							<div region="north" class="title" border="false">
 								View &rarr; Network
 							</div>
-							<div region="center" border="false" style="height:500px">
-								<div id="networkViewPortal">				
-									<div style="width:100%;">
-										<div id="networkPanelNode1" title="Node 1" closable="false" collapsible="true" style="padding:10px;">
-											<canvas id="networkGraphNode1" width=(width - 20) height=(height*0.8)>[No canvas support]</canvas><br/>
-										</div>
+							<div id="networkViewPortal" region="center" border="false" style="height:500px">	
+								<div style="width:100%;">
+									<div id="networkPanelNode1" title="Node 1" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode1">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode2" title="Node 2" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode2">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode3" title="Node 3" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode3">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode4" title="Node 4" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode4">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode5" title="Node 5" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode5">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode6" title="Node 6" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode6">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode7" title="Node 7" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode7">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode8" title="Node 8" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode8">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode9" title="Node 9" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode9">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode10" title="Node 10" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode10">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode11" title="Node 11" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode11">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode12" title="Node 12" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode12">[No canvas support]</canvas><br/>
+									</div>
+									<div id="networkPanelNode13" title="Node 13" closable="false" collapsible="true" >
+										<canvas id="networkGraphNode13">[No canvas support]</canvas><br/>
 									</div>
 								</div>
 							</div>
@@ -298,34 +362,32 @@
 							<div region="north" class="title" border="false">
 								Information
 							</div>
-							<div region="center" border="false" style="height:500px">
-								<div id="viewInfoPortal" style="position:relative">
-									<div style="width:20%;">
-										<div title="GPS Coordinates" collapsible="true" style="height:100px;padding:10px;">
-											GPS Coordinates
-										</div>
-										<div title="Autonomy" collapsible="true" closable="true" style="height:200px;padding:5px;">
-											Power Autonomy
-										</div>
-										<div title="Temperature" collapsible="true" closable="true" style="height:100px;padding:5px;">
-											Temperature
-										</div>
+							<div id="viewInfoPortal" region="center" border="false" style="height:500px">
+								<div style="width:20%;">
+									<div title="GPS Coordinates" collapsible="true" style="height:100px;padding:10px;">
+										GPS Coordinates
 									</div>
-									<div style="width:40%;">
-										<div title="Node Status" collapsible="true" closable="true" style="height:200px;padding:5px;">
-											specs
-										</div>
-										<div title="Performance" collapsible="true" closable="true" style="height:200px;padding:5px;">
-											Performance metrics
-										</div>
+									<div title="Autonomy" collapsible="true" closable="true" style="height:200px;padding:5px;">
+										Power Autonomy
 									</div>
-									<div style="width:40%;">
-										<div title="Errors" collapsible="true" closable="true" style="height:200px;padding:5px;">
-											Errors
-										</div>
-										<div title="Sampling" collapsible="true" closable="true" style="height:200px;text-align:center;">
-											Sampling
-										</div>
+									<div title="Temperature" collapsible="true" closable="true" style="height:100px;padding:5px;">
+										Temperature
+									</div>
+								</div>
+								<div style="width:40%;">
+									<div title="Node Status" collapsible="true" closable="true" style="height:200px;padding:5px;">
+										specs
+									</div>
+									<div title="Performance" collapsible="true" closable="true" style="height:200px;padding:5px;">
+										Performance metrics
+									</div>
+								</div>
+								<div style="width:40%;">
+									<div title="Errors" collapsible="true" closable="true" style="height:200px;padding:5px;">
+										Errors
+									</div>
+									<div title="Sampling" collapsible="true" closable="true" style="height:200px;text-align:center;">
+										Sampling
 									</div>
 								</div>
 							</div>

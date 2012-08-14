@@ -86,7 +86,7 @@
 			}
 
 			//network
-			function draw(node){
+			function drawNetwork(node){
 				var xaxis = "timestamp";
 				var yaxis = "air_time";
 				var graph = "networkGraphNode" + node;
@@ -591,15 +591,11 @@ function drawSysmology(node) {
     function draw() {
     
         // make the container smaller and add a second container for the master chart
-        var $container = $('#container')
-            .css('position', 'relative');
+        var $container = $('#uptimeGraph').css('position', 'relative');
     
-        var $detailContainer = $('<div id="detail-container">')
-            .appendTo($container);
+        var $detailContainer = $('<div id="detail-container">').appendTo($container);
     
-        var $masterContainer = $('<div id="master-container">')
-            .css({ position: 'absolute', top: 300, height: 80, width: '100%' })
-            .appendTo($container);
+        var $masterContainer = $('<div id="master-container">').css({ position: 'absolute', top: 300, height: 80, width: '100%' }).appendTo($container);
     
         // create master and in its callback, create the detail chart
         createMaster();
