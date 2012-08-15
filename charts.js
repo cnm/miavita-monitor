@@ -1,13 +1,30 @@
 
-/*
-
-#########################################
-#					#
-#		Charts			#
-#					#
-#########################################
-
+/*		Charts
+*
+*	    Duarte Barbosa
+*	duarte.barbosa@ist.utl.pt
 */
+
+var sysmologyPresentTooltips = false;
+var networkPresentTooltips = false;
+
+var sysmologyShowEffects = false;
+var networkShowEffects = false;
+
+var sysmologyNodeSelected = false;
+var networkNodeSelected = false;
+
+function unSelectAll(obj){
+	var selected;
+	
+	if(obj == 'sysmologyNode')
+		selected = sysmologyNodeSelected = !sysmologyNodeSelected;
+	else
+		selected = networkNodeSelected = !networkNodeSelected;
+	
+	for (i=1, content = '#' + obj + '1'; i<=13; i++, content = '#' + obj + i)
+		$(content).prop("checked", selected);
+}
 
 
 			function formatStackedData(retries, fails){

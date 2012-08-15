@@ -1,36 +1,85 @@
 
-/*
-
-#########################################
-#					#
-#		Visual			#
-#					#
-#########################################
-
+/*		Visual
+*
+*	    Duarte Barbosa
+*	duarte.barbosa@ist.utl.pt
 */
-
-var sysmologyPresentTooltips = false;
-var networkPresentTooltips = false;
-
-var sysmologyShowEffects = false;
-var networkShowEffects = false;
-
-var sysmologyNodeSelected = false;
-var networkNodeSelected = false;
-
-function unSelectAll(obj){
-	var selected;
-	
-	if(obj == 'sysmologyNode')
-		selected = sysmologyNodeSelected = !sysmologyNodeSelected;
-	else
-		selected = networkNodeSelected = !networkNodeSelected;
-	
-	for (i=1, content = '#' + obj + '1'; i<=13; i++, content = '#' + obj + i)
-		$(content).prop("checked", selected);
-}
 	
 var contentShown = "#info";
+
+function hide(obj){
+	$(obj).hide();
+}
+
+function show(obj){
+	if(contentShown != obj){
+		hide(contentShown);
+		$(obj).show("slide");
+
+		contentShown = obj;
+
+		if(contentShown == '#sysmology'){
+			
+			sysmologyPresentTooltips = $("#sysmologyPresentTooltips").is(':checked');
+			sysmologyShowEffects = $("#sysmologyShowEffects").is(':checked');
+		
+			for (counter = 1, content = '#sysmologyNode1'; counter <= 13; counter++, content = '#sysmologyNode' + counter){
+				if ($(content).is(':checked')){
+					$('#sysmologyPanelNode' + counter).show();//removeAttr("display");
+					drawSysmology(counter);
+				}
+				else
+					$('#sysmologyPanelNode' + counter).hide();//css("display", "none");
+			}
+		}
+		else if(contentShown == '#network'){
+
+			networkPresentTooltips = $("#networkPresentTooltips").is(':checked');
+			networkShowEffects = $("#networkShowEffects").is(':checked');
+		
+			for (counter = 1, content = '#networkNode1'; counter <= 13; counter++, content = '#networkNode' + counter){
+				if ($(content).is(':checked')){
+					$('#networkPanelNode' + counter).show();//css("display", "block");
+					drawNetwork(counter);
+				}
+				else
+					$('#networkPanelNode' + counter).hide();//css("display", "none");
+			}
+		}
+	}
+}
+
+
+function setupPortal(portal) {
+
+	//vir cá fora buscar o valor - doesn't matter which portal it is as they are equal!
+	var width = $(networkViewPortal).width() - 20;
+	var height = $(networkViewPortal).height();
+
+	var counter;
+	var tmp;
+
+	var aux = portal + "PanelNode";
+
+	for (counter = 1; counter <= 13; counter++){
+		tmp = aux + counter;
+		$(tmp).width(width);
+		$(tmp).height(height*0.9);
+
+	}
+
+	aux = portal + "GraphNode";
+
+	for (counter = 1; counter <= 13; counter++){
+		tmp = aux + counter;
+		$(tmp).width(width);
+		$(tmp).height(height*0.8);
+
+	}
+	
+	$(portal + "ViewPortal").portal('resize');
+
+}
 
 
 function visualTweaker() {
@@ -66,82 +115,6 @@ function visualTweaker() {
 	show('#welcome');
 
 }
-
-function setupPortal(portal) {
-
-	//vir cá fora buscar o valor - doesn't matter which portal it is as they are equal!
-	var width = $(networkViewPortal).width() - 20;
-	var height = $(networkViewPortal).height();
-
-	var counter;
-	var tmp;
-
-	var aux = portal + "PanelNode";
-
-	for (counter = 1; counter <= 13; counter++){
-		tmp = aux + counter;
-		$(tmp).width(width);
-		$(tmp).height(height*0.9);
-
-	}
-
-	aux = portal + "GraphNode";
-
-	for (counter = 1; counter <= 13; counter++){
-		tmp = aux + counter;
-		$(tmp).width(width);
-		$(tmp).height(height*0.8);
-
-	}
-	
-	$(portal + "ViewPortal").portal('resize');
-
-}
-
-
-function hide(obj){
-	$(obj).hide();
-}
-
-function show(obj){
-	if(contentShown != obj){
-		hide(contentShown);
-		$(obj).show("slide");
-
-		contentShown = obj;
-
-		if(contentShown == '#sysmology'){
-			
-			sysmologyPresentTooltips = $("#sysmologyPresentTooltips").is(':checked');
-			sysmologyShowEffects = $("#sysmologyShowEffects").is(':checked');
-		
-			for (counter = 1, content = '#sysmologyNode1'; counter <= 13; counter++, content = '#sysmologyNode' + counter){
-				if ($(content).is(':checked')){
-					$('#sysmologyPanelNode' + counter).removeAttr("display");
-					drawSysmology(counter);
-				}
-				else
-					$('#sysmologyPanelNode' + counter).css("display", "none");
-			}
-		}
-		else if(contentShown == '#network'){
-
-			networkPresentTooltips = $("#networkPresentTooltips").is(':checked');
-			networkShowEffects = $("#networkShowEffects").is(':checked');
-		
-			for (counter = 1, content = '#networkNode1'; counter <= 13; counter++, content = '#networkNode' + counter){
-				if ($(content).is(':checked')){
-					$('#networkPanelNode' + counter).css("display", "block");
-					drawNetwork(counter);
-				}
-				else
-					$('#networkPanelNode' + counter).css("display", "none");
-			}
-		}
-	}
-}
-
-
 
 //spinner stuff
 

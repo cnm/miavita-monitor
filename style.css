@@ -78,7 +78,7 @@ html, body{
 
 /* Left Menu */
 .accordion .accordion-header{
-	background:#fafafa;
+	background:#fff;
 }
 .accordion .accordion-header-selected{
 	background:url('./images/nav.png') center bottom no-repeat;

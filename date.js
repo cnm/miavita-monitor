@@ -1,12 +1,8 @@
 
-/*
-
-#########################################
-#					#
-#		Date			#
-#					#
-#########################################
-
+/*		Date
+*
+*	    Duarte Barbosa
+*	duarte.barbosa@ist.utl.pt
 */
 
 var maximumDate = 0;

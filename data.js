@@ -1,13 +1,10 @@
 
-/*
-
-#########################################
-#					#
-#		Data			#
-#					#
-#########################################
-
+/*		Data
+*
+*	    Duarte Barbosa
+*	duarte.barbosa@ist.utl.pt
 */
+
 var rawdata = null;
 var node = new Array(13);
 

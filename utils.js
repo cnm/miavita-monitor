@@ -1,12 +1,8 @@
 
-/*
-
-#########################################
-#					#
-#		Utils			#
-#					#
-#########################################
-
+/*		Utils
+*
+*	    Duarte Barbosa
+*	duarte.barbosa@ist.utl.pt
 */
 
 Object.size = function(obj) {
@@ -23,24 +19,6 @@ Array.prototype.max = function() {
 
 Array.prototype.min = function() {
   return Math.min.apply(null, this)
-}
-
-function loadjs(filename){
-	//if filename is a external JavaScript file
-	var fileref = document.createElement('script')
-	fileref.setAttribute("src", filename)
-
-		document.getElementsByTagName("head")[0].appendChild(fileref)
-}
-
-function loadcss(filename){
-	//if filename is an external CSS file
-	var fileref = document.createElement("link")
-	fileref.setAttribute("rel", "stylesheet")
-	fileref.setAttribute("href", filename)
-
-	if (typeof fileref != "undefined")
-		document.getElementsByTagName("head")[0].appendChild(fileref)
 }
 
 function init(){
