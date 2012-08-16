@@ -43,7 +43,7 @@
 	</head>
 	<body onload="init();">
 		<header id="header">
-			<div id="header-inner">
+			<nav id="header-inner">
 				<table style="width:100%;">
 					<tr style="vertical-align:bottom;">
 						<td>
@@ -54,7 +54,7 @@
 								Monitoring Platform
 							</div>
 						</td>
-						<td style="text-align:right;>
+						<td style="text-align:right;">
 							<a href="http://www.inesc-id.pt/">
 								<img alt="INESC-ID" src="./images/logo_inescid_2.gif">
 							</a>
@@ -67,10 +67,10 @@
 						</td>
 					</tr>
 				</table>
-			</div>
+			</nav>
 		</header>
-		<div id="content">
-			<div class="easyui-accordion" border="false" style="width:200px;float:left;">
+		<section id="content">
+			<nav class="easyui-accordion" border="false" style="width:200px;float:left;">
 				<div title="Configuration">
 					<ul class="pitem">
 						<li><a href="javascript:void(0)" onclick="show('#config_sysmology')">Sysmology</a></li>
@@ -96,13 +96,13 @@
 						<li><a href="javascript:void(0)" onclick="show('#about')">About</a></li>
 					</ul>
 				</div>
-			</div>
-			<div class="frame">
-				<div id="welcome" style="display:none; opacity:0.5;">
+			</nav>
+			<section class="frame">
+				<section id="welcome" hidden>
 					<div class="title">
 						Welcome
 					</div>
-					<div style="margin-left:2cm;">
+					<article class="text-related">
 						<br>
 						Welcome!
 						<br>
@@ -114,10 +114,10 @@
 						<br> - Node 2 - dados_telemovel.json
 						<br> - Node 3 - dados_jumper.json
 						<br>
-					</div>
+					</article>
 					<div id="uptimeGraph" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-				</div>
-				<div id="config_sysmology">
+				</section>
+				<section id="config_sysmology">
 					<span class="easyui-layout">
 						<div class="title" data-options="region:'north', border:'false'" >
 							Configuration &rarr; Sysmology
@@ -179,8 +179,8 @@
 							</div>
 						</div>
 					</span>
-				</div>
-				<div id="config_network">
+				</section>
+				<section id="config_network">
 					<span class="easyui-layout">
 						<div class="title" data-options="region:'north', border:'false'" >
 							Configuration &rarr; Network
@@ -241,8 +241,8 @@
 							</div>
 						</div>
 					</span>
-				</div>
-				<div id="sysmology" >
+				</section>
+				<section id="sysmology" >
 					<span class="easyui-layout">
 						<div class="title" data-options="region:'north', border:'false'" >
 							View &rarr; Sysmology
@@ -251,8 +251,8 @@
 							<div style="width:100%;"></div>
 						</div>
 					</span>
-				</div>
-				<div id="network" >
+				</section>
+				<section id="network" >
 					<span class="easyui-layout">
 						<div class="title" data-options="region:'north', border:'false'" >
 							View &rarr; Network
@@ -261,8 +261,8 @@
 							<div style="width:100%;"></div>
 						</div>
 					</span>
-				</div>
-				<div id="info" >
+				</section>
+				<section id="info" >
 					<span class="easyui-layout">
 						<div  class="title" data-options="region:'north', border:'false'">
 							Information
@@ -297,18 +297,18 @@
 							</div>
 						</div>
 					</span>
-				</div>
-				<div id="map" style="display:none;">
+				</section>
+				<section id="map" hidden>
 					<div id="googleMaps"></div>
-				</div>
-				<div id="staticMap" style="display:none;">
+				</section>
+				<section id="staticMap" hidden>
 					add pic :)
-				</div>
-				<div id="help" style="display:none;">
+				</section>
+				<section id="help" hidden>
 					<div class="title">
 						Other &rarr; Help
 					</div>
-					<div style="margin-left:2cm;">
+					<article class="text-related">
 						<br>
 						1 - Click on the "Configuration" tab at left. Then you can find two
 						options. Each one of them will bring you a specific configuration window to foreground.
@@ -320,9 +320,9 @@
 						<br>
 						4 - You can find some extra functionality clicking with the right button on the top of the graph.
 						<br>
-					</div>
-				</div>
-				<div id="about" style="display:none;">
+					</article>
+				</section>
+				<section id="about" hidden>
 					<div class="title">
 						Other &rarr; About
 					</div>
@@ -334,11 +334,10 @@
 					
 						<img alt="IST" src="./images/Logo_IST_color.jpg" style="height:75px; width:152px;">
 					</div>
-				</div>
-			</div>
-			<div style="clear:both"></div>
+				</section>
+			</section>
 			<br/>
-		</div>
+		</section>
 		<footer>
 			<br/><a class="easyui-linkbutton" href="javascript:void(0)" onclick="draw();">TEST BUTTON</a>
 			<br/><a class="easyui-linkbutton" href="javascript:void(0)" onclick="stopSpinner(); ">TEST BUTTON - spinner</a>

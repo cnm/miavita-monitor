@@ -25,7 +25,6 @@ function init(){
 	startSpinner();
 	visualTweaker();
 	readData();
-	$('#welcome').removeAttr('style');
 //	$('#mainwrap').outerHeight($(window).outerHeight() - $('#header').outerHeight() - $('#footer').outerHeight());
 //	stopSpinner();
 }

@@ -63,7 +63,7 @@ html, body{
 
 /* All the rest */
 #googleMaps{
-	width:920px;
+	width:1000px;
 	height:540px;
 	margin-left : auto;
 	margin-right : auto;
@@ -110,6 +110,11 @@ html, body{
 }
 .t-list{
 	padding:5px;
+}
+
+/* Stuff */
+.text-related {
+	margin-left:2cm;
 }
 
 /* Icons */

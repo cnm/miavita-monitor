@@ -23,8 +23,8 @@ function info() {
 
 function readData() {
 
-	$.get("miavita.json", function(parsedData){
-	    			rawdata = jQuery.parseJSON(parsedData);
+	$.get("miavita.json", function(data){
+	    			rawdata = jQuery.parseJSON(data);
 				fillContents();
 				//retrieveDates();
 	  		});
