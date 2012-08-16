@@ -2,19 +2,16 @@
 <html lang="en-GB">
 	<head><!-- Duarte Barbosa - duarte.barbosa@ist.utl.pt -->
 		<title>Miavita</title>
-		<meta name="description" content="MiaVita Monitoring Application" />
+		<meta name="application-name" content="MiaVita Monitor" />
+		<meta name="description" content="MiaVita Monitoring Platform" />
 		<meta name="author" content="Duarte Barbosa" />
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-	        <meta http-equiv="Pragma" content="no-cache">
-	        <meta http-equiv="Expires" content="0">
-	        <link rel="shortcut icon" href="favicon.ico">
+		<meta charset="UTF-8">
 		<!-- Cascade Style Sheets -->
 		<link rel="stylesheet" href="./jquery-easyui-1.3/themes/gray/easyui.css" />
 		<link rel="stylesheet" href="./jquery-ui-1.8.22.custom/development-bundle/themes/base/jquery.ui.all.css">
 		<link rel="stylesheet" href="./style.css" />
-		<!-- Include the Google Maps,jQuery and jQueryEasyUI libs and the Json Parser-->
+	        <link rel="shortcut icon" href="favicon.ico" />
+		<!-- Include the Google Maps,jQuery and jQueryEasyUI libs and the Spinner-->
        		<script src="./jquery-1.7.2.min.js"></script>
 		<script src="./jquery-ui-1.8.22.custom/js/jquery-ui-1.8.22.custom.min.js"></script>
 		<script src="./jquery-ui-sliderAccess.js"></script>		
@@ -23,7 +20,7 @@
 		<script src="./jquery.portal.js"></script>
 		<script src="./spin.min.js"></script>
 		<script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
-		<!-- Include the RGraph libraries -->
+		<!-- Include RGraph and Highcharts libraries -->
 		<script src="./RGraph/libraries/RGraph.common.core.js" ></script>
 		<script src="./RGraph/libraries/RGraph.common.dynamic.js"></script> 
 		<script src="./RGraph/libraries/RGraph.common.context.js" ></script>
@@ -43,7 +40,6 @@
 		<script src="./date.js"></script>
 		<script src="./charts.js"></script>
 		<script src="./googlemaps.js"></script>
-
 	</head>
 	<body onload="init();">
 		<div id="header">
@@ -73,11 +69,10 @@
 				</table>
 			</div>
 		</div>
-
 		<div id="mainwrap">
 			<div id="content">
 				<div style="width:200px;float:left;">
-					<div id="mm" class="easyui-accordion" border="false">
+					<div id="mm" class="easyui-accordion" data-options="border:'false'">
 						<div title="Configuration">
 							<ul class="pitem">
 								<li><a href="javascript:void(0)" onclick="show('#config_sysmology')">Sysmology</a></li>
@@ -109,7 +104,6 @@
 
 					</div>
 				</div>
-
 				<div class="frame">
 					<div id="welcome" style="display:none; opacity:0.5;">
 						<div class="title">
@@ -133,12 +127,12 @@
 					</div>
 					<div id="config_sysmology">
 						<span class="easyui-layout">
-							<div region="north" class="title" border="false">
+							<div class="title" data-options="region:'north', border:'false'" >
 								Configuration &rarr; Sysmology
 							</div>
-							<div id="configSysmologyPortal" region="center" border="false" style="height:500px">
+							<div id="configSysmologyPortal" data-options="region:'center', border:'false'" style="height:500px">
 								<div style="width:20%;">
-									<div title="Select Node(s)" collapsible="true" style="text-align:left;height:340px;padding:5px;">
+									<div title="Select Node(s)" data-options="collapsible:'true'" style="text-align:left;height:340px;padding:5px;">
 										<form name="sysmologyNodes">
 											<input type="checkbox" name="sysmologyNode1" id="sysmologyNode1" /> <label for="sysmologyNode1">Node 1</label><br>
 											<input type="checkbox" name="sysmologyNode2" id="sysmologyNode2" /> <label for="sysmologyNode2">Node 2</label><br>
@@ -157,20 +151,20 @@
 										<br/>
 										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('sysmologyNode')">(Un)Select All</a>
 									</div>
-									<div title="Save/Load" iconCls="icon-save" collapsible="true" style="height:100px;padding:10px;">
+									<div title="Save/Load" data-options="collapsible:'true', iconCls:'icon-save'" style="height:100px;padding:10px;">
 										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="load()">Load</a><br>
 										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="save()">Save</a>
 									</div>								
 								</div>
 								<div style="width:40%;">
-									<div title="Choose Units" collapsible="true" closable="true" style="height:200px;">
-										<from name="units">
+									<div title="Choose Units" data-options="collapsible:'true'" style="height:200px;">
+										<form name="units">
 											<input type="radio" name="MHz" value="MHz"/>MHz<br>
 											<input type="radio" name="KHz" value="KHz"/>KHz<br>
 											<input type="radio" name="Hz" value="Hz"/>Hz<br>
-										</from>
+										</form>
 									</div>
-									<div title="Other" collapsible="true" closable="true" style="height:200px;">
+									<div title="Other" data-options="collapsible:'true'" style="height:200px;">
 										<form name="sysmologyOtherForm">
 											<input type="checkbox" name="sysmologyPresentTooltips" id="sysmologyPresentTooltips" /> <label for="sysmologyPresentTooltips">Present Tooltips</label><br>
 											<input type="checkbox" name="sysmologyShowEffects" id="sysmologyShowEffects" /> <label for="sysmologyShowEffects">Show Effects and Animations</label><br>
@@ -178,7 +172,7 @@
 									</div>
 								</div>
 								<div style="width:40%;">
-									<div title="Time Range" iconCls="icon-calendar" collapsible="true" closable="true" style="height:200px;padding:5px;">
+									<div title="Time Range" data-options="collapsible:'true', iconCls:'icon-calendar'" style="height:200px;padding:5px;">
 										<div style="width:170px;">
 											<label for="sysfrom">From</label>
 											<input type="text" id="sysfrom" name="sysfrom" require/>
@@ -186,9 +180,9 @@
 											<label for="systo">to</label>
 											<input type="text" id="systo" name="systo" require/>
 										</div>
-										<from name="realtime">
+										<form name="realtime">
 											<input type="checkbox" name="RT" id="sysmoRT"/> <label for="sysmoRT">Real-Time Sampling</label><br>
-										</from>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -196,16 +190,16 @@
 					</div>
 					<div id="config_network">
 						<span class="easyui-layout">
-							<div region="north" class="title" border="false">
+							<div class="title" data-options="region:'north', border:'false'" >
 								Configuration &rarr; Network
 							</div>
-							<div id="configNetworkPortal" region="center" border="false" style="height:500px">
+							<div id="configNetworkPortal" data-options="region:'center', border:'false'" style="height:500px">
 								<div style="width:20%;">
-									<div title="Save/Load" iconCls="icon-save" collapsible="true" style="height:100px;padding:10px;">
+									<div title="Save/Load" data-options="collapsible:'true', iconCls:'icon-save'" style="height:100px;padding:10px;">
 										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="load()">Load</a><br>
 										<a class="easyui-linkbutton" href="javascript:void(0)" onclick="save()">Save</a>
 									</div>
-									<div title="Select Node(s)" collapsible="true" style="text-align:left;height:340px;padding:5px;">
+									<div title="Select Node(s)" data-options="collapsible:'true'" style="text-align:left;height:340px;padding:5px;">
 										<form name="networkNodes">
 											<input type="checkbox" name="networkNode1" id="networkNode1" /> <label for="networkNode1">Node 1</label><br>
 											<input type="checkbox" name="networkNode2" id="networkNode2" /> <label for="networkNode2">Node 2</label><br>
@@ -225,22 +219,22 @@
 									</div>
 								</div>
 								<div style="width:40%;">
-									<div title="Choose Units" collapsible="true" closable="true" style="height:200px;">
-										<from name="units">
+									<div title="Choose Units" data-options="collapsible:'true'" style="height:200px;">
+										<form name="units">
 											<input type="radio" name="MHz" value="MHz"/>MHz<br>
 											<input type="radio" name="KHz" value="KHz"/>KHz<br>
 											<input type="radio" name="Hz" value="Hz"/>Hz<br>
-										</from>
+										</form>
 									</div>
-									<div title="Other" collapsible="true" closable="true" style="height:200px;">
+									<div title="Other" data-options="collapsible:'true'" style="height:200px;">
 										<form name="networkOtherForm">
-											<input type="checkbox" name="networkPresentTooltips" id="networkPresentTooltips" /> <label or="networkPresentTooltips">Present Tooltips</label><br>
+											<input type="checkbox" name="networkPresentTooltips" id="networkPresentTooltips" /> <label for="networkPresentTooltips">Present Tooltips</label><br>
 											<input type="checkbox" name="networkShowEffects" id="networkShowEffects" /> <label for="networkShowEffects">Show Effects and Animations</label><br>
 										</form>
 									</div>
 								</div>
 								<div style="width:40%;">
-									<div title="Time Range" iconCls="icon-calendar" collapsible="true" closable="true" style="height:200px;padding:5px;">
+									<div title="Time Range" data-options="collapsible:'true', iconCls:'icon-calendar'" style="height:200px;padding:5px;">
 										<div style="width:170px;">
 											<label for="netfrom">From</label>
 											<input type="text" id="netfrom" name="netfrom" require/>
@@ -248,9 +242,9 @@
 											<label for="netto">to</label>
 											<input type="text" id="netto" name="netto" require/>
 										</div>
-										<from name="realtime">
+										<form name="realtime">
 											<input type="checkbox" name="RT" id="networkRT"/> <label for="networkRT">Real-Time Sampling</label><br>
-										</from>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -258,10 +252,10 @@
 					</div>
 					<div id="sysmology" >
 						<span class="easyui-layout">
-							<div region="north" class="title" border="false">
+							<div class="title" data-options="region:'north', border:'false'" >
 								View &rarr; Sysmology
 							</div>
-							<div id="sysmologyViewPortal" region="center" border="false" style="height:500px">
+							<div id="sysmologyViewPortal" data-options="region:'center', border:'false'" style="height:500px">
 								<div style="width:100%;"></div>
 							</div>
 						</span>
@@ -269,10 +263,10 @@
 
 					<div id="network" >
 						<span class="easyui-layout">
-							<div region="north" class="title" border="false">
+							<div class="title" data-options="region:'north', border:'false'" >
 								View &rarr; Network
 							</div>
-							<div id="networkViewPortal" region="center" border="false" style="height:500px">	
+							<div id="networkViewPortal" data-options="region:'center', border:'false'" style="height:500px">	
 								<div style="width:100%;"></div>
 							</div>
 						</span>
@@ -280,34 +274,34 @@
 
 					<div id="info" >
 						<span class="easyui-layout">
-							<div region="north" class="title" border="false">
+							<div  class="title" data-options="region:'north', border:'false'">
 								Information
 							</div>
-							<div id="viewInfoPortal" region="center" border="false" style="height:500px">
+							<div id="viewInfoPortal" data-options="region:'center', border:'false'" style="height:500px">
 								<div style="width:20%;">
-									<div title="GPS Coordinates" collapsible="true" style="height:100px;padding:10px;">
+									<div title="GPS Coordinates" data-options="collapsible:'true'" style="height:100px;padding:10px;">
 										GPS Coordinates
 									</div>
-									<div title="Autonomy" collapsible="true" closable="true" style="height:200px;padding:5px;">
+									<div title="Autonomy" data-options="collapsible:'true'" style="height:200px;padding:5px;">
 										Power Autonomy
 									</div>
-									<div title="Temperature" collapsible="true" closable="true" style="height:100px;padding:5px;">
+									<div title="Temperature" data-options="collapsible:'true'" style="height:100px;padding:5px;">
 										Temperature
 									</div>
 								</div>
 								<div style="width:40%;">
-									<div title="Node Status" collapsible="true" closable="true" style="height:200px;padding:5px;">
+									<div title="Node Status" data-options="collapsible:'true'" style="height:200px;padding:5px;">
 										specs
 									</div>
-									<div title="Performance" collapsible="true" closable="true" style="height:200px;padding:5px;">
+									<div title="Performance" data-options="collapsible:'true'" style="height:200px;padding:5px;">
 										Performance metrics
 									</div>
 								</div>
 								<div style="width:40%;">
-									<div title="Errors" collapsible="true" closable="true" style="height:200px;padding:5px;">
+									<div title="Errors" data-options="collapsible:'true'" style="height:200px;padding:5px;">
 										Errors
 									</div>
-									<div title="Sampling" collapsible="true" closable="true" style="height:200px;text-align:center;">
+									<div title="Sampling" data-options="collapsible:'true'" style="height:200px;text-align:center;">
 										Sampling
 									</div>
 								</div>

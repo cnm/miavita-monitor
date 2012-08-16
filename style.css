@@ -14,8 +14,6 @@ html, body{
 	margin-left: 5mm;
 	margin-right: 5mm;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	text-decoration:none;
 	color:#fff;
 }
@@ -102,8 +100,6 @@ html, body{
 	background:#fff;
 	border:1px solid #ccc;
 	border-radius:5px;
-	-moz-border-radius:5px;
-	-webkit-border-radius: 5px;
 }
 
 /* titulo de cada uma das seccoes */
@@ -223,7 +219,6 @@ html, body{
 }
 .portal-proxy{
 	opacity:0.6;
-	filter:alpha(opacity=60);
 }
 .portal-spacer{
 	border:3px dashed #eee;

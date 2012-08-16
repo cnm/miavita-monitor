@@ -19,8 +19,8 @@ function show(obj){
 		contentShown = obj;
 
 		if(contentShown == '#sysmology'){
-			sysmologyPresentTooltips = $("#sysmologyPresentTooltips").is(':checked');
-			sysmologyShowEffects = $("#sysmologyShowEffects").is(':checked');
+			sysmologyPresentTooltips = $('#sysmologyPresentTooltips').is(':checked');
+			sysmologyShowEffects = $('#sysmologyShowEffects').is(':checked');
 		
 			for (counter = 1, content = '#sysmologyNode1'; counter <= 13; counter++, content = '#sysmologyNode' + counter){
 				removePanel('#sysmologyPanelNode' + counter);
@@ -31,8 +31,8 @@ function show(obj){
 			}
 		}
 		else if(contentShown == '#network'){
-			networkPresentTooltips = $("#networkPresentTooltips").is(':checked');
-			networkShowEffects = $("#networkShowEffects").is(':checked');
+			networkPresentTooltips = $('#networkPresentTooltips').is(':checked');
+			networkShowEffects = $('#networkShowEffects').is(':checked');
 		
 			for (counter = 1, content = '#networkNode1'; counter <= 13; counter++, content = '#networkNode' + counter){
 				removePanel('#networkPanelNode' + counter);
@@ -101,8 +101,7 @@ function addPanel(node){
 			content:'<div id="sysmologyGraphNode' + node + '" width="' + (width - 20) + '" height="' + (height*0.8) +'">[Something wrong regarding Highcharts lib]</div><br/>',
 			height:(height*0.9),
 			closable:false,
-			collapsible:true,
-			style: 'padding:10px'
+			collapsible:true
 		});
 	else
 		p.panel({
@@ -111,8 +110,7 @@ function addPanel(node){
 			content:'<canvas id="networkGraphNode' + node + '" width="' + (width - 20) + '" height="' + (height*0.8) +'">[No canvas support]</canvas><br/>',
 			height:(height*0.9),
 			closable:false,
-			collapsible:true,
-			style: 'padding:10px'
+			collapsible:true
 		});
 			
 	$(contentShown + 'ViewPortal').portal('add', {
