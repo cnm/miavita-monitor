@@ -5,6 +5,10 @@ html, body{
 	background:#fafafa;
 }
 
+a:hover{
+	font-weight:bold;
+}
+
 /* Header Related */
 #header{
 	background: #666;
@@ -36,9 +40,6 @@ html, body{
 	padding:1px 3px;
 	text-decoration:none;
 	color:#fff;
-}
-#topmenu a:hover{
-	text-decoration:underline;
 }
 
 /* Main Frame */
@@ -80,16 +81,21 @@ html, body{
 	height:35px;
 	border:0;
 }
-.pitem{
+.menu-entry{
 	list-style-type:none;
 	margin:0;
 	padding:2px 0 10px 20px;
 }
-.pitem li{
+.menu-entry li a{
+	text-decoration:none;
 	font-size:12px;
 	line-height:18px;
+	color:#3F3F3F;
 }
-        
+.menu-entry li a:active{
+	font-weight:bold;
+}
+       
 /* conteudo real da Main Frame */
 .frame{
 	margin-left: 220px;

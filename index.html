@@ -72,26 +72,26 @@
 		<section id="content">
 			<nav class="easyui-accordion" border="false" style="width:200px;float:left;">
 				<div title="Configuration">
-					<ul class="pitem">
+					<ul class="menu-entry">
 						<li><a href="javascript:void(0)" onclick="show('#config_sysmology')">Sysmology</a></li>
 						<li><a href="javascript:void(0)" onclick="show('#config_network')">Network</a></li>
 					</ul>
 				</div>
 		   		<div title="View">
-					<ul class="pitem">
+					<ul class="menu-entry">
 						<li><a href="javascript:void(0)" onclick="show('#sysmology')">Sysmology</a></li>
 						<li><a href="javascript:void(0)" onclick="show('#network')">Network</a></li>
 						<li><a href="javascript:void(0)" onclick="show('#info')">Information</a></li>
 					</ul>
 				</div>
 		   		<div title="Maps">
-					<ul class="pitem">
+					<ul class="menu-entry">
 						<li><a href="javascript:void(0)" onclick="googleInitialize(); show('#map')">Google Maps</a></li>
 						<li><a href="javascript:void(0)" onclick="show('#staticMap')">Static Map</a></li>
 					</ul>
 				</div>
 				<div title="Other">
-					<ul class="pitem">
+					<ul class="menu-entry">
 						<li><a href="javascript:void(0)" onclick="show('#help')">Help</a></li>
 						<li><a href="javascript:void(0)" onclick="show('#about')">About</a></li>
 					</ul>
@@ -140,7 +140,7 @@
 										<input type="checkbox" name="sysmologyNode12" id="sysmologyNode12" /> <label for="sysmologyNode12">Node 12</label><br>
 										<input type="checkbox" name="sysmologyNode13" id="sysmologyNode13" /> <label for="sysmologyNode13">Node 13</label><br>
 									</form>
-									<br/>
+									<br>
 									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('sysmologyNode')">(Un)Select All</a>
 								</div>
 								<div title="Save/Load" data-options="collapsible:'true', iconCls:'icon-save'" style="height:100px;padding:10px;">
@@ -301,7 +301,7 @@
 				<section id="map" hidden>
 					<div id="googleMaps"></div>
 				</section>
-				<section id="staticMap" hidden>
+				<section id="staticMap" hidden>	
 					add pic :)
 				</section>
 				<section id="help" hidden>
@@ -326,22 +326,22 @@
 					<div class="title">
 						Other &rarr; About
 					</div>
-					<div>
+					<section>
 						<img alt="Miavita" src="./images/logo_miavita.gif">
 						<img alt="INESC-ID" src="./images/logo_inescid_2.gif">
 					
 						CNM - TagusPark
 					
 						<img alt="IST" src="./images/Logo_IST_color.jpg" style="height:75px; width:152px;">
-					</div>
+					</section>
 				</section>
 			</section>
-			<br/>
+			<br>
 		</section>
 		<footer>
-			<br/><a class="easyui-linkbutton" href="javascript:void(0)" onclick="draw();">TEST BUTTON</a>
-			<br/><a class="easyui-linkbutton" href="javascript:void(0)" onclick="stopSpinner(); ">TEST BUTTON - spinner</a>
-			<br/>Duarte Barbosa - duarte.barbosa@ist.utl.pt
+			<br><a class="easyui-linkbutton" href="javascript:void(0)" onclick="draw();">TEST BUTTON</a>
+			<br><a class="easyui-linkbutton" href="javascript:void(0)" onclick="stopSpinner(); ">TEST BUTTON - spinner</a>
+			<br>Duarte Barbosa - duarte.barbosa@ist.utl.pt
 		</footer>
 	</body>
 </html>
