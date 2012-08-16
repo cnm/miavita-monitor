@@ -42,17 +42,14 @@ html, body{
 }
 
 /* Main Frame */
-#mainwrap{
+#content{
 	margin-top:5px;
 	margin-left: 5mm;
 	margin-right: 5mm;
-}
-#content{
-	margin:0;
 	text-align:left;
 	padding:10px;
-	border-radius:5px;
 	border:1px solid #ddd;
+	border-radius:5px;
 	background:#fff;
 }
 #content img{
