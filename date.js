@@ -25,10 +25,10 @@ function retrieveDates(){
 			minimumDate = mintmp;
 	}
 */
-	minimumDate = new Date(1342928632);
-	maximumDate = new Date(); //*1000 esta em milis
+//	minimumDate = new Date(1342928632);
+//	maximumDate = new Date(); //*1000 esta em milis
 
-	$('#sysfrom').datetimepicker({
+	$('#sysfrom').datetimepicker();/*{
 	    minDate: minimumDate,
 	    maxDate: maximumDate,
 	    timeFormat: 'h:m',
@@ -50,8 +50,8 @@ function retrieveDates(){
 			$('#systo').datetimepicker('option', 'minDate', new Date(start.getTime()));
 		    }
 	});
-
-	$('#systo').datetimepicker({
+*/
+	$('#systo').datetimepicker(); /*{
 	    minDate: minimumDate,
 	    maxDate: maximumDate,
 	    timeFormat: 'h:m',
@@ -72,10 +72,10 @@ function retrieveDates(){
 		var end = $(this).datetimepicker('getDate');
 		$('#sysfrom').datetimepicker('option', 'maxDate', new Date(end.getTime()) );
 	    }
-	});
+	});*/
 
-	$( "#netfrom" ).datepicker( "option", "minDate", minimumDate );
-	$( "#netto" ).datepicker( "option", "maxDate", maximumDate );
+//	$( "#netfrom" ).datepicker( "option", "minDate", minimumDate );
+//	$( "#netto" ).datepicker( "option", "maxDate", maximumDate );
 }
 
 $(function() {
