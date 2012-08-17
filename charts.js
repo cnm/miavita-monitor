@@ -5,22 +5,22 @@
 *	duarte.barbosa@ist.utl.pt
 */
 
-var sysmologyPresentTooltips = false;
-var networkPresentTooltips = false;
+var sysPresentTooltips = false;
+var netPresentTooltips = false;
 
-var sysmologyShowEffects = false;
-var networkShowEffects = false;
+var sysShowEffects = false;
+var netShowEffects = false;
 
-var sysmologyNodeSelected = false;
-var networkNodeSelected = false;
+var sysNodeSelected = false;
+var netNodeSelected = false;
 
 function unSelectAll(obj){
 	var selected;
 	
-	if(obj == 'sysmologyNode')
-		selected = sysmologyNodeSelected = !sysmologyNodeSelected;
+	if(obj == 'sysNode')
+		selected = sysNodeSelected = !sysNodeSelected;
 	else
-		selected = networkNodeSelected = !networkNodeSelected;
+		selected = netNodeSelected = !netNodeSelected;
 	
 	for (i=1, content = '#' + obj + '1'; i<=13; i++, content = '#' + obj + i)
 		$(content).prop("checked", selected);
@@ -74,7 +74,7 @@ function unSelectAll(obj){
 				return result;
 			}
 
-			function formatTooltipsLineSysmology(nodeID){
+			function formatTooltipsLinesys(nodeID){
 				var sample1 = retrieveData(nodeID, Parameter.sample1);
 				var sample2 = retrieveData(nodeID, Parameter.sample2);
 				var sample3 = retrieveData(nodeID, Parameter.sample3);
@@ -102,11 +102,11 @@ function unSelectAll(obj){
 				return result;
 			}
 
-			//network
+			//net
 			function drawNetwork(node){
 				var xaxis = "timestamp";
 				var yaxis = "air_time";
-				var graph = "networkGraphNode" + node;
+				var graph = "netGraphNode" + node;
 				
 				var bar = new RGraph.Bar(graph, formatStackedData(retrieveData(node, Parameter.retries), retrieveData(node, Parameter.fails)));
 				//bar.Set('chart.title', "Node : " + node + " Coordinates: ");
@@ -164,7 +164,7 @@ function unSelectAll(obj){
 				bar.Set('chart.key.border', true);
 
 				//efeitos
-				if(networkShowEffects){
+				if(netShowEffects){
 					//line.Set('chart.curvy', true); ahah stuff
 					RGraph.Effects.Fade.In(bar);
 					RGraph.Effects.Bar.Grow(bar);
@@ -189,9 +189,9 @@ function stuff(node){
 
 }
 
-function drawSysmology(node) {
+function drawsys(node) {
 
-	var graph = "sysmologyGraphNode" + node;
+	var graph = "sysGraphNode" + node;
 
     var chart = new Highcharts.Chart({
             chart: {

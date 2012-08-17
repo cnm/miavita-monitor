@@ -74,14 +74,14 @@
 			<nav class="easyui-accordion" border="false" style="width:200px;float:left;">
 				<div title="Configuration">
 					<ul class="menu-entry">
-						<li><a href="javascript:void(0)" onclick="show('#config_sysmology')">Sysmology</a></li>
-						<li><a href="javascript:void(0)" onclick="show('#config_network')">Network</a></li>
+						<li><a href="javascript:void(0)" onclick="show('#config_sys')">Sysmology</a></li>
+						<li><a href="javascript:void(0)" onclick="show('#config_net')">Network</a></li>
 					</ul>
 				</div>
 		   		<div title="View">
 					<ul class="menu-entry">
-						<li><a href="javascript:void(0)" onclick="show('#sysmology')">Sysmology</a></li>
-						<li><a href="javascript:void(0)" onclick="show('#network')">Network</a></li>
+						<li><a href="javascript:void(0)" onclick="show('#sys')">Sysmology</a></li>
+						<li><a href="javascript:void(0)" onclick="show('#net')">Network</a></li>
 						<li><a href="javascript:void(0)" onclick="show('#info')">Information</a></li>
 					</ul>
 				</div>
@@ -118,29 +118,29 @@
 					</article>
 					<div id="uptimeGraph" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 				</section>
-				<section id="config_sysmology">
+				<section id="config_sys">
 					<span class="easyui-layout">
 						<div class="title" data-options="region:'north'" border="false" >
 							Configuration &rarr; Sysmology
 						</div>
-						<div id="configSysmologyPortal" data-options="region:'center', border:'false'" style="height:500px">
+						<div id="configsysPortal" data-options="region:'center', border:'false'" style="height:500px">
 							<div style="width:20%;">
 								<div title="Select Node(s)" data-options="collapsible:'true'" style="text-align:left;height:340px;padding:5px;">
-									<input type="checkbox" name="sysmologyNode1" id="sysmologyNode1" /> <label for="sysmologyNode1">Node 1</label><br>
-									<input type="checkbox" name="sysmologyNode2" id="sysmologyNode2" /> <label for="sysmologyNode2">Node 2</label><br>
-									<input type="checkbox" name="sysmologyNode3" id="sysmologyNode3" /> <label for="sysmologyNode3">Node 3</label><br>
-									<input type="checkbox" name="sysmologyNode4" id="sysmologyNode4" /> <label for="sysmologyNode4">Node 4</label><br>
-									<input type="checkbox" name="sysmologyNode5" id="sysmologyNode5" /> <label for="sysmologyNode5">Node 5</label><br>
-									<input type="checkbox" name="sysmologyNode6" id="sysmologyNode6" /> <label for="sysmologyNode6">Node 6</label><br>
-									<input type="checkbox" name="sysmologyNode7" id="sysmologyNode7" /> <label for="sysmologyNode7">Node 7</label><br>
-									<input type="checkbox" name="sysmologyNode8" id="sysmologyNode8" /> <label for="sysmologyNode8">Node 8</label><br>
-									<input type="checkbox" name="sysmologyNode9" id="sysmologyNode9" /> <label for="sysmologyNode9">Node 9</label><br>
-									<input type="checkbox" name="sysmologyNode10" id="sysmologyNode10" /> <label for="sysmologyNode10">Node 10</label><br>
-									<input type="checkbox" name="sysmologyNode11" id="sysmologyNode11" /> <label for="sysmologyNode11">Node 11</label><br>
-									<input type="checkbox" name="sysmologyNode12" id="sysmologyNode12" /> <label for="sysmologyNode12">Node 12</label><br>
-									<input type="checkbox" name="sysmologyNode13" id="sysmologyNode13" /> <label for="sysmologyNode13">Node 13</label><br>
+									<input type="checkbox" name="sysNode1" id="sysNode1" /> <label for="sysNode1">Node 1</label><br>
+									<input type="checkbox" name="sysNode2" id="sysNode2" /> <label for="sysNode2">Node 2</label><br>
+									<input type="checkbox" name="sysNode3" id="sysNode3" /> <label for="sysNode3">Node 3</label><br>
+									<input type="checkbox" name="sysNode4" id="sysNode4" /> <label for="sysNode4">Node 4</label><br>
+									<input type="checkbox" name="sysNode5" id="sysNode5" /> <label for="sysNode5">Node 5</label><br>
+									<input type="checkbox" name="sysNode6" id="sysNode6" /> <label for="sysNode6">Node 6</label><br>
+									<input type="checkbox" name="sysNode7" id="sysNode7" /> <label for="sysNode7">Node 7</label><br>
+									<input type="checkbox" name="sysNode8" id="sysNode8" /> <label for="sysNode8">Node 8</label><br>
+									<input type="checkbox" name="sysNode9" id="sysNode9" /> <label for="sysNode9">Node 9</label><br>
+									<input type="checkbox" name="sysNode10" id="sysNode10" /> <label for="sysNode10">Node 10</label><br>
+									<input type="checkbox" name="sysNode11" id="sysNode11" /> <label for="sysNode11">Node 11</label><br>
+									<input type="checkbox" name="sysNode12" id="sysNode12" /> <label for="sysNode12">Node 12</label><br>
+									<input type="checkbox" name="sysNode13" id="sysNode13" /> <label for="sysNode13">Node 13</label><br>
 									<br>
-									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('sysmologyNode')">(Un)Select All</a>
+									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('sysNode')">(Un)Select All</a>
 								</div>
 								<div title="Save/Load" data-options="collapsible:'true', iconCls:'icon-save'" style="height:100px;padding:10px;">
 									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="load()">Load</a><br>
@@ -156,10 +156,8 @@
 									</form>
 								</div>
 								<div title="Other" data-options="collapsible:'true'" style="height:200px;">
-									<form name="sysmologyOtherForm">
-										<input type="checkbox" name="sysmologyPresentTooltips" id="sysmologyPresentTooltips" /> <label for="sysmologyPresentTooltips">Present Tooltips</label><br>
-										<input type="checkbox" name="sysmologyShowEffects" id="sysmologyShowEffects" /> <label for="sysmologyShowEffects">Show Effects and Animations</label><br>
-									</form>
+									<input type="checkbox" name="sysPresentTooltips" id="sysPresentTooltips" /> <label for="sysPresentTooltips">Present Tooltips</label><br>
+									<input type="checkbox" name="sysShowEffects" id="sysShowEffects" /> <label for="sysShowEffects">Show Effects and Animations</label><br>
 								</div>
 							</div>
 							<div style="width:40%;">
@@ -177,32 +175,32 @@
 						</div>
 					</span>
 				</section>
-				<section id="config_network">
+				<section id="config_net">
 					<span class="easyui-layout">
 						<div class="title" data-options="region:'north'" border="false" >
 							Configuration &rarr; Network
 						</div>
 						<div id="configNetworkPortal" data-options="region:'center', border:'false'" style="height:500px">
 							<div style="width:20%;">
+								<div title="Select Node(s)" data-options="collapsible:'true'" style="text-align:left;height:340px;padding:5px;">
+									<input type="checkbox" name="netNode1" id="netNode1" /> <label for="netNode1">Node 1</label><br>
+									<input type="checkbox" name="netNode2" id="netNode2" /> <label for="netNode2">Node 2</label><br>
+									<input type="checkbox" name="netNode3" id="netNode3" /> <label for="netNode3">Node 3</label><br>
+									<input type="checkbox" name="netNode4" id="netNode4" /> <label for="netNode4">Node 4</label><br>
+									<input type="checkbox" name="netNode5" id="netNode5" /> <label for="netNode5">Node 5</label><br>
+									<input type="checkbox" name="netNode6" id="netNode6" /> <label for="netNode6">Node 6</label><br>
+									<input type="checkbox" name="netNode7" id="netNode7" /> <label for="netNode7">Node 7</label><br>
+									<input type="checkbox" name="netNode8" id="netNode8" /> <label for="netNode8">Node 8</label><br>
+									<input type="checkbox" name="netNode9" id="netNode9" /> <label for="netNode9">Node 9</label><br>
+									<input type="checkbox" name="netNode10" id="netNode10" /> <label for="netNode10">Node 10</label><br>
+									<input type="checkbox" name="netNode11" id="netNode11" /> <label for="netNode11">Node 11</label><br>
+									<input type="checkbox" name="netNode12" id="netNode12" /> <label for="netNode12">Node 12</label><br>
+									<input type="checkbox" name="netNode13" id="netNode13" /> <label for="netNode13">Node 13</label><br>
+									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('netNode')">(Un)Select All</a>
+								</div>
 								<div title="Save/Load" data-options="collapsible:'true', iconCls:'icon-save'" style="height:100px;padding:10px;">
 									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="load()">Load</a><br>
 									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="save()">Save</a>
-								</div>
-								<div title="Select Node(s)" data-options="collapsible:'true'" style="text-align:left;height:340px;padding:5px;">
-									<input type="checkbox" name="networkNode1" id="networkNode1" /> <label for="networkNode1">Node 1</label><br>
-									<input type="checkbox" name="networkNode2" id="networkNode2" /> <label for="networkNode2">Node 2</label><br>
-									<input type="checkbox" name="networkNode3" id="networkNode3" /> <label for="networkNode3">Node 3</label><br>
-									<input type="checkbox" name="networkNode4" id="networkNode4" /> <label for="networkNode4">Node 4</label><br>
-									<input type="checkbox" name="networkNode5" id="networkNode5" /> <label for="networkNode5">Node 5</label><br>
-									<input type="checkbox" name="networkNode6" id="networkNode6" /> <label for="networkNode6">Node 6</label><br>
-									<input type="checkbox" name="networkNode7" id="networkNode7" /> <label for="networkNode7">Node 7</label><br>
-									<input type="checkbox" name="networkNode8" id="networkNode8" /> <label for="networkNode8">Node 8</label><br>
-									<input type="checkbox" name="networkNode9" id="networkNode9" /> <label for="networkNode9">Node 9</label><br>
-									<input type="checkbox" name="networkNode10" id="networkNode10" /> <label for="networkNode10">Node 10</label><br>
-									<input type="checkbox" name="networkNode11" id="networkNode11" /> <label for="networkNode11">Node 11</label><br>
-									<input type="checkbox" name="networkNode12" id="networkNode12" /> <label for="networkNode12">Node 12</label><br>
-									<input type="checkbox" name="networkNode13" id="networkNode13" /> <label for="networkNode13">Node 13</label><br>
-									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('networkNode')">(Un)Select All</a>
 								</div>
 							</div>
 							<div style="width:40%;">
@@ -214,10 +212,8 @@
 									</form>
 								</div>
 								<div title="Other" data-options="collapsible:'true'" style="height:200px;">
-									<form name="networkOtherForm">
-										<input type="checkbox" name="networkPresentTooltips" id="networkPresentTooltips" /> <label for="networkPresentTooltips">Present Tooltips</label><br>
-										<input type="checkbox" name="networkShowEffects" id="networkShowEffects" /> <label for="networkShowEffects">Show Effects and Animations</label><br>
-									</form>
+									<input type="checkbox" name="netPresentTooltips" id="netPresentTooltips" /> <label for="netPresentTooltips">Present Tooltips</label><br>
+									<input type="checkbox" name="netShowEffects" id="netShowEffects" /> <label for="netShowEffects">Show Effects and Animations</label><br>
 								</div>
 							</div>
 							<div style="width:40%;">
@@ -235,22 +231,22 @@
 						</div>
 					</span>
 				</section>
-				<section id="sysmology" >
+				<section id="sys" >
 					<span class="easyui-layout">
 						<div class="title" data-options="region:'north'" border="false" >
 							View &rarr; Sysmology
 						</div>
-						<div id="sysmologyViewPortal" data-options="region:'center', border:'false'" style="height:500px">
+						<div id="sysViewPortal" data-options="region:'center', border:'false'" style="height:500px">
 							<div style="width:100%;"></div>
 						</div>
 					</span>
 				</section>
-				<section id="network" >
+				<section id="net" >
 					<span class="easyui-layout">
 						<div class="title" data-options="region:'north'" border="false" >
 							View &rarr; Network
 						</div>
-						<div id="networkViewPortal" data-options="region:'center', border:'false'" style="height:500px">	
+						<div id="netViewPortal" data-options="region:'center', border:'false'" style="height:500px">	
 							<div style="width:100%;"></div>
 						</div>
 					</span>

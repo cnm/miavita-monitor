@@ -18,24 +18,24 @@ function show(obj){
 
 		contentShown = obj;
 
-		if(contentShown == '#sysmology'){
-			sysmologyPresentTooltips = $('#sysmologyPresentTooltips').is(':checked');
-			sysmologyShowEffects = $('#sysmologyShowEffects').is(':checked');
+		if(contentShown == '#sys'){
+			sysPresentTooltips = $('#sysPresentTooltips').is(':checked');
+			sysShowEffects = $('#sysShowEffects').is(':checked');
 		
-			for (counter = 1, content = '#sysmologyNode1'; counter <= 13; counter++, content = '#sysmologyNode' + counter){
-				removePanel('#sysmologyPanelNode' + counter);
+			for (counter = 1, content = '#sysNode1'; counter <= 13; counter++, content = '#sysNode' + counter){
+				removePanel('#sysPanelNode' + counter);
 				if ($(content).is(':checked')){
 					addPanel(counter);
-					drawSysmology(counter);
+					drawsys(counter);
 				}
 			}
 		}
-		else if(contentShown == '#network'){
-			networkPresentTooltips = $('#networkPresentTooltips').is(':checked');
-			networkShowEffects = $('#networkShowEffects').is(':checked');
+		else if(contentShown == '#net'){
+			netPresentTooltips = $('#netPresentTooltips').is(':checked');
+			netShowEffects = $('#netShowEffects').is(':checked');
 		
-			for (counter = 1, content = '#networkNode1'; counter <= 13; counter++, content = '#networkNode' + counter){
-				removePanel('#networkPanelNode' + counter);
+			for (counter = 1, content = '#netNode1'; counter <= 13; counter++, content = '#netNode' + counter){
+				removePanel('#netPanelNode' + counter);
 				if ($(content).is(':checked')){
 					addPanel(counter);
 					drawNetwork(counter);
@@ -47,7 +47,7 @@ function show(obj){
 
 function visualTweaker() {
 
-	$('#configSysmologyPortal').portal({
+	$('#configsysPortal').portal({
 		border:false,
 		fit:true
 	});
@@ -55,11 +55,11 @@ function visualTweaker() {
 		border:false,
 		fit:true
 	});
-	$('#sysmologyViewPortal').portal({
+	$('#sysViewPortal').portal({
 		border:false,
 		fit:true
 	});
-	$('#networkViewPortal').portal({
+	$('#netViewPortal').portal({
 		border:false,
 		fit:true
 	});
@@ -68,10 +68,10 @@ function visualTweaker() {
 		fit:true
 	});
 
-	hide('#config_network');
-	hide('#config_sysmology');
-	hide('#sysmology');
-	hide('#network');
+	hide('#config_net');
+	hide('#config_sys');
+	hide('#sys');
+	hide('#net');
 	show('#welcome');
 
 }
@@ -90,24 +90,24 @@ function removePanel(panel){
 function addPanel(node){
 
 	//vir cá fora buscar o valor - doesn't matter which portal it is as they are equal!
-	var width = $(networkViewPortal).width() - 20;
-	var height = $(networkViewPortal).height();
+	var width = $(netViewPortal).width() - 20;
+	var height = $(netViewPortal).height();
 	
 	var p = $('<div/>').appendTo('body');
-	if(contentShown == "#sysmology")
+	if(contentShown == "#sys")
 		p.panel({
-			id: 'sysmologyPanelNode' + node,
+			id: 'sysPanelNode' + node,
 			title: 'Node ' + node,
-			content:'<div id="sysmologyGraphNode' + node + '" width="' + (width - 20) + '" height="' + (height*0.8) +'">[Something wrong regarding Highcharts lib]</div><br/>',
+			content:'<div id="sysGraphNode' + node + '" width="' + (width - 20) + '" height="' + (height*0.8) +'">[Something wrong regarding Highcharts lib]</div><br/>',
 			height:(height*0.9),
 			closable:false,
 			collapsible:true
 		});
 	else
 		p.panel({
-			id: 'networkPanelNode' + node,
+			id: 'netPanelNode' + node,
 			title: 'Node ' + node,
-			content:'<canvas id="networkGraphNode' + node + '" width="' + (width - 20) + '" height="' + (height*0.8) +'">[No canvas support]</canvas><br/>',
+			content:'<canvas id="netGraphNode' + node + '" width="' + (width - 20) + '" height="' + (height*0.8) +'">[No canvas support]</canvas><br/>',
 			height:(height*0.9),
 			closable:false,
 			collapsible:true
