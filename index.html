@@ -126,21 +126,19 @@
 						<div id="configSysmologyPortal" data-options="region:'center', border:'false'" style="height:500px">
 							<div style="width:20%;">
 								<div title="Select Node(s)" data-options="collapsible:'true'" style="text-align:left;height:340px;padding:5px;">
-									<form name="sysmologyNodes">
-										<input type="checkbox" name="sysmologyNode1" id="sysmologyNode1" /> <label for="sysmologyNode1">Node 1</label><br>
-										<input type="checkbox" name="sysmologyNode2" id="sysmologyNode2" /> <label for="sysmologyNode2">Node 2</label><br>
-										<input type="checkbox" name="sysmologyNode3" id="sysmologyNode3" /> <label for="sysmologyNode3">Node 3</label><br>
-										<input type="checkbox" name="sysmologyNode4" id="sysmologyNode4" /> <label for="sysmologyNode4">Node 4</label><br>
-										<input type="checkbox" name="sysmologyNode5" id="sysmologyNode5" /> <label for="sysmologyNode5">Node 5</label><br>
-										<input type="checkbox" name="sysmologyNode6" id="sysmologyNode6" /> <label for="sysmologyNode6">Node 6</label><br>
-										<input type="checkbox" name="sysmologyNode7" id="sysmologyNode7" /> <label for="sysmologyNode7">Node 7</label><br>
-										<input type="checkbox" name="sysmologyNode8" id="sysmologyNode8" /> <label for="sysmologyNode8">Node 8</label><br>
-										<input type="checkbox" name="sysmologyNode9" id="sysmologyNode9" /> <label for="sysmologyNode9">Node 9</label><br>
-										<input type="checkbox" name="sysmologyNode10" id="sysmologyNode10" /> <label for="sysmologyNode10">Node 10</label><br>
-										<input type="checkbox" name="sysmologyNode11" id="sysmologyNode11" /> <label for="sysmologyNode11">Node 11</label><br>
-										<input type="checkbox" name="sysmologyNode12" id="sysmologyNode12" /> <label for="sysmologyNode12">Node 12</label><br>
-										<input type="checkbox" name="sysmologyNode13" id="sysmologyNode13" /> <label for="sysmologyNode13">Node 13</label><br>
-									</form>
+									<input type="checkbox" name="sysmologyNode1" id="sysmologyNode1" /> <label for="sysmologyNode1">Node 1</label><br>
+									<input type="checkbox" name="sysmologyNode2" id="sysmologyNode2" /> <label for="sysmologyNode2">Node 2</label><br>
+									<input type="checkbox" name="sysmologyNode3" id="sysmologyNode3" /> <label for="sysmologyNode3">Node 3</label><br>
+									<input type="checkbox" name="sysmologyNode4" id="sysmologyNode4" /> <label for="sysmologyNode4">Node 4</label><br>
+									<input type="checkbox" name="sysmologyNode5" id="sysmologyNode5" /> <label for="sysmologyNode5">Node 5</label><br>
+									<input type="checkbox" name="sysmologyNode6" id="sysmologyNode6" /> <label for="sysmologyNode6">Node 6</label><br>
+									<input type="checkbox" name="sysmologyNode7" id="sysmologyNode7" /> <label for="sysmologyNode7">Node 7</label><br>
+									<input type="checkbox" name="sysmologyNode8" id="sysmologyNode8" /> <label for="sysmologyNode8">Node 8</label><br>
+									<input type="checkbox" name="sysmologyNode9" id="sysmologyNode9" /> <label for="sysmologyNode9">Node 9</label><br>
+									<input type="checkbox" name="sysmologyNode10" id="sysmologyNode10" /> <label for="sysmologyNode10">Node 10</label><br>
+									<input type="checkbox" name="sysmologyNode11" id="sysmologyNode11" /> <label for="sysmologyNode11">Node 11</label><br>
+									<input type="checkbox" name="sysmologyNode12" id="sysmologyNode12" /> <label for="sysmologyNode12">Node 12</label><br>
+									<input type="checkbox" name="sysmologyNode13" id="sysmologyNode13" /> <label for="sysmologyNode13">Node 13</label><br>
 									<br>
 									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('sysmologyNode')">(Un)Select All</a>
 								</div>
@@ -173,9 +171,7 @@
 										<label for="systo">to</label>
 										<input type="text" id="systo" name="systo" />
 									</div>
-									<form name="realtime">
-										<input type="checkbox" name="RT" id="sysmoRT"/> <label for="sysmoRT">Real-Time Sampling</label><br>
-									</form>
+									<input type="checkbox" name="RT" id="sysRT" onchange="disableTime('#sys')"/> <label for="sysRT">Real-Time Sampling</label><br>
 								</div>
 							</div>
 						</div>
@@ -193,21 +189,19 @@
 									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="save()">Save</a>
 								</div>
 								<div title="Select Node(s)" data-options="collapsible:'true'" style="text-align:left;height:340px;padding:5px;">
-									<form name="networkNodes">
-										<input type="checkbox" name="networkNode1" id="networkNode1" /> <label for="networkNode1">Node 1</label><br>
-										<input type="checkbox" name="networkNode2" id="networkNode2" /> <label for="networkNode2">Node 2</label><br>
-										<input type="checkbox" name="networkNode3" id="networkNode3" /> <label for="networkNode3">Node 3</label><br>
-										<input type="checkbox" name="networkNode4" id="networkNode4" /> <label for="networkNode4">Node 4</label><br>
-										<input type="checkbox" name="networkNode5" id="networkNode5" /> <label for="networkNode5">Node 5</label><br>
-										<input type="checkbox" name="networkNode6" id="networkNode6" /> <label for="networkNode6">Node 6</label><br>
-										<input type="checkbox" name="networkNode7" id="networkNode7" /> <label for="networkNode7">Node 7</label><br>
-										<input type="checkbox" name="networkNode8" id="networkNode8" /> <label for="networkNode8">Node 8</label><br>
-										<input type="checkbox" name="networkNode9" id="networkNode9" /> <label for="networkNode9">Node 9</label><br>
-										<input type="checkbox" name="networkNode10" id="networkNode10" /> <label for="networkNode10">Node 10</label><br>
-										<input type="checkbox" name="networkNode11" id="networkNode11" /> <label for="networkNode11">Node 11</label><br>
-										<input type="checkbox" name="networkNode12" id="networkNode12" /> <label for="networkNode12">Node 12</label><br>
-										<input type="checkbox" name="networkNode13" id="networkNode13" /> <label for="networkNode13">Node 13</label><br>
-									</form>
+									<input type="checkbox" name="networkNode1" id="networkNode1" /> <label for="networkNode1">Node 1</label><br>
+									<input type="checkbox" name="networkNode2" id="networkNode2" /> <label for="networkNode2">Node 2</label><br>
+									<input type="checkbox" name="networkNode3" id="networkNode3" /> <label for="networkNode3">Node 3</label><br>
+									<input type="checkbox" name="networkNode4" id="networkNode4" /> <label for="networkNode4">Node 4</label><br>
+									<input type="checkbox" name="networkNode5" id="networkNode5" /> <label for="networkNode5">Node 5</label><br>
+									<input type="checkbox" name="networkNode6" id="networkNode6" /> <label for="networkNode6">Node 6</label><br>
+									<input type="checkbox" name="networkNode7" id="networkNode7" /> <label for="networkNode7">Node 7</label><br>
+									<input type="checkbox" name="networkNode8" id="networkNode8" /> <label for="networkNode8">Node 8</label><br>
+									<input type="checkbox" name="networkNode9" id="networkNode9" /> <label for="networkNode9">Node 9</label><br>
+									<input type="checkbox" name="networkNode10" id="networkNode10" /> <label for="networkNode10">Node 10</label><br>
+									<input type="checkbox" name="networkNode11" id="networkNode11" /> <label for="networkNode11">Node 11</label><br>
+									<input type="checkbox" name="networkNode12" id="networkNode12" /> <label for="networkNode12">Node 12</label><br>
+									<input type="checkbox" name="networkNode13" id="networkNode13" /> <label for="networkNode13">Node 13</label><br>
 									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('networkNode')">(Un)Select All</a>
 								</div>
 							</div>
@@ -235,9 +229,7 @@
 										<label for="netto">to</label>
 										<input type="text" id="netto" name="netto" require/>
 									</div>
-									<form name="realtime">
-										<input type="checkbox" name="RT" id="networkRT"/> <label for="networkRT">Real-Time Sampling</label><br>
-									</form>
+									<input type="checkbox" name="RT" id="netRT" onchange="disableTime('#net')"/> <label for="netRT">Real-Time Sampling</label><br>
 								</div>
 							</div>
 						</div>

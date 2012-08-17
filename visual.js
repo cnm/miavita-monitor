@@ -123,7 +123,6 @@ function addPanel(node){
 
 
 //spinner stuff
-
 var spinner;
 
 var spinnerOptions = {
@@ -149,5 +148,17 @@ function startSpinner(){
 
 function stopSpinner(){
 	spinner.stop(document.getElementById('content'));
+}
+
+//realtime checkbox
+function disableTime(time){
+	if ($(time + 'RT').is(':checked')){
+		$(time + 'from').attr('disabled', true);
+		$(time + 'to').attr('disabled', true);
+	}
+	else {
+		$(time + 'from').removeAttr('disabled');
+		$(time + 'to').removeAttr('disabled');
+	}
 }
 

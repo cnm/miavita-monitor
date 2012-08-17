@@ -9,20 +9,13 @@ var rawdata = null;
 var node = new Array(13);
 
 function info() {
-	$.ajax({
-		url: "http://smart-ip.net/geoip-json",
-		context: document.body,
-		dataType: "text", // why not json? can't really figure out!
-		success: function(parsedData){
-	    			rawdata = jsonParse(parsedData); //alterar isto
+	$.get("http://smart-ip.net/geoip-json", function(data){
+	    			rawdata = jQuery.parseJSON(data);
 				alert(rawdata);
-				//retrieveDates();
-	  		}
-		})
+	  		});
 }
 
 function readData() {
-
 	$.get("miavita.json", function(data){
 	    			rawdata = jQuery.parseJSON(data);
 				fillContents();

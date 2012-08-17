@@ -33,6 +33,7 @@ function retrieveDates(){
 	    maxDate: maximumDate,
 	    timeFormat: 'h:m',
 	    separator: ' @ ',
+	    dateFormat: "dd-mm-yy",
 	    onClose: function(dateText, inst) {
 			var endDateTextBox = $('#systo');
 			if (endDateTextBox.val() != '') {
@@ -56,6 +57,7 @@ function retrieveDates(){
 	    maxDate: maximumDate,
 	    timeFormat: 'h:m',
 	    separator: ' @ ',
+	    dateFormat: "dd-mm-yy",
 	    onClose: function(dateText, inst) {
 		var startDateTextBox = $('#sysfrom');
 		if (startDateTextBox.val() != '') {
@@ -83,6 +85,7 @@ $(function() {
 		defaultDate: "+1w",
 		changeMonth: true,
 		numberOfMonths: 1,
+		dateFormat: "dd-mm-yy",
 		onSelect: 
 			function( selectedDate ) {
 				var option = this.id == "netfrom" ? "minDate" : "maxDate",
