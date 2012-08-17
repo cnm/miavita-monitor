@@ -1,6 +1,7 @@
 html, body{
-   	font-family:Arial,Helvetica,"Nimbus Sans L",sans-serif;
-	font-size:13px;
+	font: 13px 'UbuntuRegular', Arial, sans-serif;
+	/* font-family:Arial,Helvetica,"Nimbus Sans L",sans-serif;
+	font-size:13px; */
 	text-align:center;
 	background:#fafafa;
 }
@@ -92,10 +93,7 @@ a:hover{
 	line-height:18px;
 	color:#3F3F3F;
 }
-.menu-entry li a:active{
-	font-weight:bold;
-}
-       
+   
 /* conteudo real da Main Frame */
 .frame{
 	margin-left: 220px;
@@ -111,11 +109,7 @@ a:hover{
 	font-weight:bold;
 	padding:10px 5px;
 	background:#eee;
-	overflow:hidden;
 	border-bottom:1px solid #ccc;
-}
-.t-list{
-	padding:5px;
 }
 
 /* Stuff */
@@ -232,12 +226,3 @@ a:hover{
 	border:3px dashed #eee;
 	margin-bottom:10px;
 }
-
-.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
-.ui-timepicker-div dl { text-align: left; }
-.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
-.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
-.ui-timepicker-div td { font-size: 90%; }
-.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
-
-

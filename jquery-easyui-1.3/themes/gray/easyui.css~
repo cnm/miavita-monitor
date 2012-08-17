@@ -891,7 +891,7 @@ a.m-btn-plain-active{
 	border-bottom:1px solid #D3D3D3;
 }
 .panel-body{
-	overflow:hidden; /* alterei aqui ! */
+	overflow:auto; /* alterei aqui ! estava auto! */
 	border:1px solid #D3D3D3;
 	border-top-width:0px;
 }
