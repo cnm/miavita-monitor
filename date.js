@@ -9,10 +9,9 @@ var maximumDate = 0;
 var minimumDate = 0;
 	
 function retrieveDates(){
+/*
 	var i = 1, maxtmp = 0, mintmp = 0;
 
-	//falta verificar para undefined etc JAVASCRIPT SUCKS
-/*
 	for(; i <= 13; i++){
 		maxtmp = retrieveData(i, Parameter.timestamp).max();
 		if(maxtmp > maximumDate)
@@ -24,11 +23,11 @@ function retrieveDates(){
 		if(mintmp < minimumDate)
 			minimumDate = mintmp;
 	}
-*/
+
 //	minimumDate = new Date(1342928632);
 //	maximumDate = new Date(); //*1000 esta em milis
 
-	$('#sysfrom').datetimepicker();/*{
+	$('#sysfrom').datetimepicker({
 	    minDate: minimumDate,
 	    maxDate: maximumDate,
 	    timeFormat: 'h:m',
@@ -51,8 +50,8 @@ function retrieveDates(){
 			$('#systo').datetimepicker('option', 'minDate', new Date(start.getTime()));
 		    }
 	});
-*/
-	$('#systo').datetimepicker(); /*{
+
+	$('#systo').datetimepicker({
 	    minDate: minimumDate,
 	    maxDate: maximumDate,
 	    timeFormat: 'h:m',
@@ -74,26 +73,27 @@ function retrieveDates(){
 		var end = $(this).datetimepicker('getDate');
 		$('#sysfrom').datetimepicker('option', 'maxDate', new Date(end.getTime()) );
 	    }
-	});*/
-
-//	$( "#netfrom" ).datepicker( "option", "minDate", minimumDate );
-//	$( "#netto" ).datepicker( "option", "maxDate", maximumDate );
+	});
+*/
+	configPicker('sys');
+	configPicker('net');
 }
 
-$(function() {
-	var dates = $( "#netfrom, #netto" ).datepicker({
+function configPicker(picker){
+	var dates = $('#' + picker + 'from, #' + picker + 'to').datepicker({
 		defaultDate: "+1w",
 		changeMonth: true,
 		numberOfMonths: 1,
 		dateFormat: "dd-mm-yy",
-		onSelect: 
+		currentText: "Now",
+		onSelect:
 			function( selectedDate ) {
-				var option = this.id == "netfrom" ? "minDate" : "maxDate",
+				var option = this.id == picker + 'from' ? "minDate" : "maxDate",
 					instance = $( this ).data( "datepicker" ),
 					date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings );
 
 				dates.not( this ).datepicker( "option", option, date );
 			}
 	});
-});
+}
 
