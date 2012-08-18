@@ -77,7 +77,6 @@ function visualTweaker() {
 }
 
 // panel stuff
-
 function collapsePanel(panel){
 	$(panel).panel('collapse');
 }
@@ -90,28 +89,29 @@ function removePanel(panel){
 function addPanel(node){
 
 	//vir cá fora buscar o valor - doesn't matter which portal it is as they are equal!
-	var width = $(netViewPortal).width() - 20;
+	var width = ($(netViewPortal).innerWidth()) - 20;
 	var height = $(netViewPortal).height();
-	
 	var p = $('<div/>').appendTo('body');
-	if(contentShown == "#sys")
-		p.panel({
-			id: 'sysPanelNode' + node,
-			title: 'Node ' + node,
-			content:'<div id="sysGraphNode' + node + '" width="' + (width - 20) + '" height="' + (height*0.8) +'">[Something wrong regarding Highcharts lib]</div><br/>',
-			height:(height*0.9),
-			closable:false,
-			collapsible:true
-		});
-	else
-		p.panel({
-			id: 'netPanelNode' + node,
-			title: 'Node ' + node,
-			content:'<canvas id="netGraphNode' + node + '" width="' + (width - 20) + '" height="' + (height*0.8) +'">[No canvas support]</canvas><br/>',
-			height:(height*0.9),
-			closable:false,
-			collapsible:true
-		});
+	var id, content;
+	
+	//alert("width: " + width + "\n innerWidth: " + $(netViewPortal).innerWidth() + "\n outerWidth: " + $(netViewPortal).outerWidth());
+	
+	if(contentShown == "#sys"){
+		id = 'sysPanelNode' + node;
+		content = '<div id="sysGraphNode' + node + '" width="' + width + '" height="' + (height*0.8) +'">[Something wrong regarding Highcharts lib]</div><br/>';
+	} else {
+		id = 'netPanelNode' + node;
+		content = '<canvas id="netGraphNode' + node + '" width="' + width + '" height="' + (height*0.8) +'">[No canvas support]</canvas><br/>';
+	}
+
+	p.panel({
+		id: id,
+		title: 'Node ' + node,
+		content: content,
+		height:(height*0.9),
+		closable:false,
+		collapsible:true
+	});
 			
 	$(contentShown + 'ViewPortal').portal('add', {
 		panel:p,
@@ -124,7 +124,6 @@ function addPanel(node){
 
 //spinner stuff
 var spinner;
-
 var spinnerOptions = {
 	lines: 13, // The number of lines to draw
 	length: 8, // The length of each line
@@ -135,7 +134,7 @@ var spinnerOptions = {
 	speed: 1, // Rounds per second
 	trail: 60, // Afterglow percentage
 	shadow: false, // Whether to render a shadow
-	hwaccel: false, // Whether to use hardware acceleration
+	hwaccel: true, // Whether to use hardware acceleration
 	className: 'spinner', // The CSS class to assign to the spinner
 	zIndex: 'auto', // The z-index (defaults to 2000000000)
 	top: 'auto', // Top position relative to parent in px
@@ -148,6 +147,22 @@ function startSpinner(){
 
 function stopSpinner(){
 	spinner.stop(document.getElementById('content'));
+}
+
+//select nodes
+var sysNodeSelected = false;
+var netNodeSelected = false;
+
+function unSelectAll(obj){
+	var selected;
+	
+	if(obj == 'sysNode')
+		selected = sysNodeSelected = !sysNodeSelected;
+	else
+		selected = netNodeSelected = !netNodeSelected;
+	
+	for (i=1, content = '#' + obj + '1'; i<=13; i++, content = '#' + obj + i)
+		$(content).prop("checked", selected);
 }
 
 //realtime checkbox

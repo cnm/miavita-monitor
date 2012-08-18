@@ -19,7 +19,7 @@ User's Manual
 1 - Click on the "Configuration" tab at left. Then you can find two options. Each one of them will bring you a specific configuration window to foreground. 
 2 - Setup the proper options to each graph. 
 3 - Click on the "View" tab at left and choose the desired option. You can now find graphs of every Node you selected comprising the information you chosed earlier. 
-4 - You can find some extra functionality clicking with the right button on the top of the graph. 
+4 - You can find some extra functionality within the graph.
 
 
 Dev's Manual
@@ -33,4 +33,5 @@ The files which are developed by us are:
 * data.js
 * date.js
 * googlemaps.js
+* style.css
 * index.html

@@ -25,6 +25,7 @@ function init(){
 	startSpinner();
 	visualTweaker();
 	readData();
+	drawUptime();
 //	$('#mainwrap').outerHeight($(window).outerHeight() - $('#header').outerHeight() - $('#footer').outerHeight());
 //	stopSpinner();
 }
