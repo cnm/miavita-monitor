@@ -23,11 +23,23 @@ function show(obj){
 			sysShowEffects = $('#sysShowEffects').is(':checked');
 		
 			for (counter = 1, content = '#sysNode1'; counter <= 13; counter++, content = '#sysNode' + counter){
-				removePanel('#sysPanelNode' + counter);
 				if ($(content).is(':checked')){
-					addPanel(counter);
-					drawsys(counter);
+					if(sysCharts[counter] == undefined){
+						addPanel(counter);
+						drawsys(counter);
+					}
+					else
+						sysCharts[counter].redraw();
 				}
+				else {
+					if(sysCharts[counter] != undefined){
+						sysCharts[counter].destroy();
+						sysCharts[counter] = undefined;
+					}
+
+					removePanel('#sysPanelNode' + counter);
+				}
+			
 			}
 		}
 		else if(contentShown == '#net'){

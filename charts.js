@@ -169,6 +169,8 @@ function stuff(node){
 
 }
 
+var sysCharts = new Array(13);	//array of sysmology charts
+
 function drawsys(node) {
 
 	var options = {
@@ -297,7 +299,7 @@ function drawsys(node) {
 		}];
 	}
 
-	var chart = new Highcharts.Chart(options);
+	sysCharts[node] = new Highcharts.Chart(options);
 }
 
 //Uptime
