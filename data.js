@@ -16,7 +16,7 @@ function info() {
 }
 
 function readData() {
-	$.get("miavita.json", function(data){
+	$.get("test.log", function(data){
 	    			rawdata = jQuery.parseJSON(data);
 				fillContents();
 				retrieveDates();

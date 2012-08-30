@@ -17,7 +17,7 @@ int main(void){
 
 	for(; nodeID != 14; nodeID++){
 
-		for(; sequence != 101; sequence++, timestamp++){
+		for(; sequence != 601; sequence++, timestamp++){
 			srand(nodeID + time(NULL)/1000 + sequence * 10);
 
 			sample_1 = sin(sequence * PI/18) * 10 + (rand() % 20)/10.0;

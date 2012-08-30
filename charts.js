@@ -598,7 +598,7 @@ function createDetail(masterChart) {
 		tooltip: {
 			formatter: function () {
 				var point = this.points[0];
-				return '<b>' + point.series.name + '</b><br/>' + Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>' + '1 USD = ' + Highcharts.numberFormat(point.y, 2) + ' EUR';
+				return '<b>' + point.series.name + '</b><br/>' + Highcharts.dateFormat('%A %B %e %Y', this.x) + ':<br/>' + 'Nodes running: ' + Highcharts.numberFormat(point.y, 2);
 			},
 			shared: true
 		},
@@ -619,7 +619,7 @@ function createDetail(masterChart) {
 			}
 		},
 		series: [{
-			name: 'USD to EUR',
+			name: 'Random Data',
 
 			pointStart: detailStart,
 			pointInterval: 24 * 3600 * 1000,
