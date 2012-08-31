@@ -5,7 +5,6 @@
 *	duarte.barbosa@ist.utl.pt
 */
 
-var rawdata = null;
 var node = new Array(13);
 
 function info() {
@@ -15,7 +14,15 @@ function info() {
 	  		});
 }
 
-function readData() {
+function readData(id) {
+	var node = 'node' + id + '.json';
+	$.get(node, function(data){
+	    			fillContents(jQuery.parseJSON(data));
+				//retrieveDates();
+	  		});
+}
+
+function readData1() {
 	$.get("miavita.json", function(data){
 	    			rawdata = jQuery.parseJSON(data);
 				fillContents();
@@ -23,12 +30,17 @@ function readData() {
 	  		});
 }
 
-function fillContents() {
-	var size = Object.size(rawdata);
-
+function setup() {
 	for(var i = 0; i < 13; i++)
 		node[i] = new Array();
-				
+
+	readData(1);
+	readData(2);
+	readData(3);
+}
+
+function fillContents(rawdata) {
+
 	for(var k in rawdata) {
 		var index = rawdata[k].node_id;
 		var packet = rawdata[k].sequence;

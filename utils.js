@@ -24,7 +24,8 @@ Array.prototype.min = function() {
 function init(){
 	startSpinner();
 	visualTweaker();
-	readData();
+//	readData();
+	setup();
 	drawUptime();
 //	$('#mainwrap').outerHeight($(window).outerHeight() - $('#header').outerHeight() - $('#footer').outerHeight());
 //	stopSpinner();
