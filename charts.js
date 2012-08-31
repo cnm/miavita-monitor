@@ -453,7 +453,7 @@ function createMaster() {
 					xAxis.removePlotBand('mask-before');
 					xAxis.addPlotBand({
 						id: 'mask-before',
-						from: Date.UTC(2006, 0, 1),
+						from: Date.UTC(2012, 0, 1),
 						to: min,
 						color: 'rgba(0, 0, 0, 0.2)'
 					});
@@ -462,7 +462,7 @@ function createMaster() {
 					xAxis.addPlotBand({
 						id: 'mask-after',
 						from: max,
-						to: Date.UTC(2008, 11, 31),
+						to: Date.UTC(2012, 11, 31),
 						color: 'rgba(0, 0, 0, 0.2)'
 					});
 
