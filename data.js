@@ -40,9 +40,9 @@ function fillContents() {
 		node[index][packet][3] = rawdata[k].sequence;
 		node[index][packet][4] = rawdata[k].fails;
 		node[index][packet][5] = rawdata[k].retries;
-		node[index][packet][6] = rawdata[k].sample_1 * 0.000298023;
-		node[index][packet][7] = rawdata[k].sample_2 * 0.000298023;
-		node[index][packet][8] = rawdata[k].sample_3 * 0.000298023;
+		node[index][packet][6] = rawdata[k].sample_1 * 0.0003; //0.000298023
+		node[index][packet][7] = rawdata[k].sample_2 * 0.0003;
+		node[index][packet][8] = rawdata[k].sample_3 * 0.0003;
 		node[index][packet][9] = rawdata[k].sample_4;
 	}
 }
