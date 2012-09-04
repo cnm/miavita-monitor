@@ -11,7 +11,7 @@
  * $width     int      The pixel width of the exported raster image. The height is calculated.
  * $svg       string   The SVG source code to convert.
  */
-
+ ini_set('display_errors', 'on');
 
 // Options
 define ('BATIK_PATH', 'batik-rasterizer.jar');
@@ -22,6 +22,18 @@ ini_set('magic_quotes_gpc', 'off');
 $type = $_POST['type'];
 $svg = (string) $_POST['svg'];
 $filename = (string) $_POST['filename'];
+
+// set temp dir
+if (function_exists('sys_get_temp_dir')) {
+	$tmp = sys_get_temp_dir();
+} elseif (is_dir('temp')) {
+	$tmp = 'temp';
+} else {
+	exit('No temp dir available');
+};
+
+// find batik or try to use imageMagick (convert)
+$imageMagick = !file_exists(BATIK_PATH);
 
 // prepare variables
 if (!$filename) $filename = 'chart';
@@ -52,27 +64,39 @@ if ($type == 'image/png') {
 } elseif ($type == 'image/svg+xml') {
 	$ext = 'svg';	
 }
-$outfile = "temp/$tempName.$ext";
+$outfile = "$tmp/$tempName.$ext";
 
 if (isset($typeString)) {
 	
 	// size
 	if ($_POST['width']) {
 		$width = (int)$_POST['width'];
-		if ($width) $width = "-w $width";
+		if ($width) {
+			if($imageMagick) {
+				$width = "-size $width"."x";
+			} else {
+				$width = "-w $width";
+			}
+		}
 	}
 
 	// generate the temporary file
-	if (!file_put_contents("temp/$tempName.svg", $svg)) { 
+	if (!file_put_contents("$tmp/$tempName.svg", $svg)) { 
 		die("Couldn't create temporary file. Check that the directory permissions for
-			the /temp directory are set to 777.");
+			the $tmp directory are set to 777.");
 	}
 	
 	// do the conversion
-	$output = shell_exec("java -jar ". BATIK_PATH ." $typeString -d $outfile $width temp/$tempName.svg");
+	if ($imageMagick) {
+		$cmd = "convert $width ".escapeshellarg("$tmp/$tempName.svg")." ".escapeshellarg("$outfile");
+	} else {
+		$cmd = "java -jar ". BATIK_PATH ." ".escapeshellarg("$typeString")." -d ".
+			escapeshellarg("$outfile ")." $width ".escapeshellarg("$tmp/$tempName.svg");
+	}
+	$output = shell_exec($cmd." 2>&1");
 	
 	// catch error
-	if (!is_file($outfile) || filesize($outfile) < 10) {
+	if (!is_file($outfile) || filesize($outfile) < 10) {		
 		echo "<pre>$output</pre>";
 		echo "Error while converting SVG. ";
 		
@@ -87,17 +111,16 @@ if (isset($typeString)) {
 			<li>Click the Check button</li>
 			</ol>";
 		}
-	} 
-	
+	}
 	// stream it
 	else {
 		header("Content-Disposition: attachment; filename=\"$filename.$ext\"");
-		header("Content-Type: $type");
+		header("Content-Type: $type");		
 		echo file_get_contents($outfile);
 	}
 	
 	// delete it
-	unlink("temp/$tempName.svg");
+	unlink("$tmp/$tempName.svg");
 	unlink($outfile);
 
 // SVG can be streamed directly back
