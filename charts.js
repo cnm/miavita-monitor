@@ -453,7 +453,7 @@ function createMaster() {
 					xAxis.removePlotBand('mask-before');
 					xAxis.addPlotBand({
 						id: 'mask-before',
-						from: Date.UTC(2012, 0, 1),
+						from: Date.UTC(2011, 1, 1),
 						to: min,
 						color: 'rgba(0, 0, 0, 0.2)'
 					});
@@ -482,8 +482,8 @@ function createMaster() {
 			maxZoom: 14 * 24 * 3600000, // fourteen days
 			plotBands: [{
 				id: 'mask-before',
-				from: Date.UTC(2006, 0, 1),
-				to: Date.UTC(2008, 7, 1),
+				from: Date.UTC(2011, 1, 1),
+				to: Date.UTC(2012, 7, 1),
 				color: 'rgba(0, 0, 0, 0.2)'
 			}],
 			title: {
@@ -539,7 +539,7 @@ function createMaster() {
 			type: 'area',
 			name: 'USD to EUR',
 			pointInterval: 24 * 3600 * 1000,
-			pointStart: Date.UTC(2006, 0, 01),
+			pointStart: Date.UTC(2011, 0, 01),
 			data: data //stuff(2)
 		}],
 
@@ -557,7 +557,7 @@ function createDetail(masterChart) {
 
 	// prepare the detail chart
 	var detailData = [],
-		detailStart = Date.UTC(2008, 7, 1);
+		detailStart = Date.UTC(2011, 1, 1);
 
 	jQuery.each(masterChart.series[0].data, function (i, point) {
 		if (point.x >= detailStart) {
