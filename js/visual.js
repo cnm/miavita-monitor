@@ -11,6 +11,40 @@ function hide(obj){
 	$(obj).hide();
 }
 
+function helper(){
+	if(contentShown == '#sys'){
+		for (counter = 1, content = '#sysNode1'; counter <= 13; counter++, content = '#sysNode' + counter){
+			if(sysCharts[counter] != undefined){
+				sysCharts[counter].destroy();
+				sysCharts[counter] = undefined;
+			}
+			removePanel('#sysPanelNode' + counter);
+			if ($(content).is(':checked')){
+				addPanel(counter);
+				drawsys(counter);
+			}
+		}
+	}
+	else if(contentShown == '#net'){
+		for (counter = 1, content = '#netNode1'; counter <= 13; counter++, content = '#netNode' + counter){
+			if(netCharts[counter] != undefined){
+				netCharts[counter].destroy();
+				netCharts[counter] = undefined;
+			}
+			removePanel('#netPanelNode' + counter);
+			if ($(content).is(':checked')){
+				addPanel(counter);
+				drawnet(counter);
+			}
+		}
+	}
+}
+
+function refresh(){
+	setup();
+	setTimeout(function(){helper()},1000);
+}
+
 function show(obj){
 	if(contentShown != obj){
 		hide(contentShown);
@@ -43,15 +77,24 @@ function show(obj){
 			}
 		}
 		else if(contentShown == '#net'){
-			netPresentTooltips = $('#netPresentTooltips').is(':checked');
-			netShowEffects = $('#netShowEffects').is(':checked');
-		
 			for (counter = 1, content = '#netNode1'; counter <= 13; counter++, content = '#netNode' + counter){
-				removePanel('#netPanelNode' + counter);
 				if ($(content).is(':checked')){
-					addPanel(counter);
-					drawNetwork(counter);
+					if(netCharts[counter] == undefined){
+						addPanel(counter);
+						drawnet(counter);
+					}
+					else
+						netCharts[counter].redraw();
 				}
+				else {
+					if(netCharts[counter] != undefined){
+						netCharts[counter].destroy();
+						netCharts[counter] = undefined;
+					}
+
+					removePanel('#netPanelNode' + counter);
+				}
+			
 			}
 		}
 	}
@@ -113,7 +156,7 @@ function addPanel(node){
 		content = '<div id="sysGraphNode' + node + '" width="' + width + '" height="' + (height*0.8) +'">[Something wrong regarding Highcharts lib]</div><br/>';
 	} else {
 		id = 'netPanelNode' + node;
-		content = '<canvas id="netGraphNode' + node + '" width="' + width + '" height="' + (height*0.8) +'">[No canvas support]</canvas><br/>';
+		content = '<div id="netGraphNode' + node + '" width="' + width + '" height="' + (height*0.8) +'">[Something wrong regarding Highcharts lib]</div><br/>';
 	}
 
 	p.panel({

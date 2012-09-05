@@ -22,11 +22,13 @@ Array.prototype.min = function() {
 }
 
 function init(){
-	startSpinner();
+	setup();
+//	startSpinner();
 	visualTweaker();
 	retrieveDates();
-	setup();
-	drawUptime();
+
+	show('#config_sys');
+//	drawUptime();
 //	$('#mainwrap').outerHeight($(window).outerHeight() - $('#header').outerHeight() - $('#footer').outerHeight());
 //	stopSpinner();
 }

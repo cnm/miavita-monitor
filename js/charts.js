@@ -169,6 +169,137 @@ function stuff(node){
 
 }
 
+var netCharts = new Array(13);	//array of sysmology charts
+
+function drawnet(node) {
+
+	var options = {
+		
+		title: {
+			text: 'Network Chart for Node ' + node,
+			x: -20 //center
+		},
+		xAxis: {
+			title: {
+				text: 'Timestamp (h:m:s:ms)'
+			},
+			type: "datetime",
+			tickPixelInterval: 150
+		},
+		yAxis: {
+			title: {
+				text: 'Quantity'
+			},
+			plotLines: [{
+				value: 0,
+				width: 1,
+				color: '#808080'
+			}]
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'right',
+			verticalAlign: 'top',
+			x: 0,
+			y: 25,
+			floating: true
+		},
+		credits: {
+			enabled: false
+		},
+		/*plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: false,
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    radius: 3
+                                }
+                            }
+                        }
+                    }
+                },*/
+                chart: {},
+                tooltip: {},
+		series: {}
+	}
+	
+	if (!$('#sysRT').is(':checked')){
+		options.chart = {
+				renderTo: 'netGraphNode' + node,
+				type: 'line',
+				zoomType: 'xy',
+				resetZoomButton: {
+					position: {
+						align: 'right', // by default
+						verticalAlign: 'bottom',
+						x: -10,
+						y: -30
+					},
+					relativeTo: 'chart'
+				}
+		};
+	
+		options.tooltip = {
+				formatter: function () {
+					return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y + 'mV';
+				}
+		};
+
+		options.series =[{
+				name: 'Retries',
+				data: retrieveData(node, Parameter.retries)
+				}, {
+				name: 'Fails',
+				data: retrieveData(node, Parameter.fails)
+		}];
+	}
+	else {
+		options.chart = {
+				renderTo: 'netGraphNode' + node,
+				type: 'spline',
+				marginRight: 10,
+				events: {
+					load: function () {
+						// set up the updating of the chart each second
+						var series = this.series[0];
+						setInterval(function () {
+								var x = (new Date()).getTime(), // current time
+								y = Math.random();
+								series.addPoint([x, y], true, true);
+							}, 1000);
+					}
+				}
+		};
+	
+		options.tooltip = {
+				formatter: function () {
+					return '<b>' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' + Highcharts.numberFormat(this.y, 2);
+				}
+		};
+
+		options.series = [{
+			name: 'Real-time Sampling',
+			data: (function () {
+				// generate an array of random data
+				var data = [], i, time = (new Date()).getTime();
+
+				for (i = -19; i <= 0; i++) {
+					data.push({
+						x: time + i * 1000,
+						y: Math.random()
+					});
+				}
+				return data;
+			})()
+		}];
+	}
+
+	netCharts[node] = new Highcharts.Chart(options);
+}
+
+
 var sysCharts = new Array(13);	//array of sysmology charts
 
 function drawsys(node) {

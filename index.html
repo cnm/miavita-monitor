@@ -22,16 +22,6 @@
 		<!-- Include RGraph and Highcharts libraries -->
 		<script src="./js/Highcharts-2.3.2/js/highcharts.js" defer="defer"></script>
 		<script src="./js/Highcharts-2.3.2/js/modules/exporting.js" defer="defer"></script>
-		<script src="./js/RGraph/libraries/RGraph.common.core.js" defer="defer"></script>
-		<script src="./js/RGraph/libraries/RGraph.common.dynamic.js" defer="defer"></script> 
-		<script src="./js/RGraph/libraries/RGraph.common.context.js" defer="defer"></script>
-		<script src="./js/RGraph/libraries/RGraph.common.tooltips.js" defer="defer"></script>
-		<script src="./js/RGraph/libraries/RGraph.common.effects.js" defer="defer"></script>
-		<script src="./js/RGraph/libraries/RGraph.common.key.js" defer="defer"></script>
-		<script src="./js/RGraph/libraries/RGraph.common.zoom.js" defer="defer"></script>
-		<script src="./js/RGraph/libraries/RGraph.common.annotate.js" defer="defer"></script>
-		<script src="./js/RGraph/libraries/RGraph.bar.js" defer="defer"></script>
-		<script src="./js/RGraph/libraries/RGraph.line.js" defer="defer"></script>
 		<!-- Include my own code! -->
 		<script src="./js/utils.js"></script>
 		<script src="./js/visual.js"></script>
@@ -59,7 +49,7 @@
 							</a>
 							<div id="topmenu">
 								<a href="javascript:void(0)" onclick="show('#welcome')">Home</a>
-								<a href="javascript:void(0)" onclick="readData()">Refresh</a>
+								<a href="javascript:void(0)" onclick="refresh()">Refresh</a>
 								<a href="javascript:void(0)" onclick="show('#help')">Help</a>
 								<a href="javascript:void(0)" onclick="show('#about')">About</a>
 							</div>
@@ -124,7 +114,7 @@
 						<div id="configsysPortal" data-options="region:'center', border:'false'" style="height:500px">
 							<div style="width:20%;">
 								<div title="Select Node(s)" data-options="collapsible:'true'" style="text-align:left;height:340px;padding:5px;">
-									<input type="checkbox" name="sysNode1" id="sysNode1" /> <label for="sysNode1">Node 1</label><br>
+									<input type="checkbox" name="sysNode1" id="sysNode1" checked="true" /> <label for="sysNode1">Node 1</label><br>
 									<input type="checkbox" name="sysNode2" id="sysNode2" /> <label for="sysNode2">Node 2</label><br>
 									<input type="checkbox" name="sysNode3" id="sysNode3" /> <label for="sysNode3">Node 3</label><br>
 									<input type="checkbox" name="sysNode4" id="sysNode4" /> <label for="sysNode4">Node 4</label><br>
@@ -140,23 +130,6 @@
 									<br>
 									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('sysNode')">(Un)Select All</a>
 								</div>
-								<div title="Save/Load" data-options="collapsible:'true', iconCls:'icon-save'" style="height:100px;padding:10px;">
-									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="load()">Load</a><br>
-									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="save()">Save</a>
-								</div>								
-							</div>
-							<div style="width:40%;">
-								<div title="Choose Units" data-options="collapsible:'true'" style="height:200px;">
-									<form name="units">
-										<input type="radio" name="MHz" value="MHz"/>MHz<br>
-										<input type="radio" name="KHz" value="KHz"/>KHz<br>
-										<input type="radio" name="Hz" value="Hz"/>Hz<br>
-									</form>
-								</div>
-								<div title="Other" data-options="collapsible:'true'" style="height:200px;">
-									<input type="checkbox" name="sysPresentTooltips" id="sysPresentTooltips" /> <label for="sysPresentTooltips">Present Tooltips</label><br>
-									<input type="checkbox" name="sysShowEffects" id="sysShowEffects" /> <label for="sysShowEffects">Show Effects and Animations</label><br>
-								</div>
 							</div>
 							<div style="width:40%;">
 								<div title="Time Range" data-options="collapsible:'true', iconCls:'icon-calendar'" style="height:200px;padding:5px;">
@@ -169,6 +142,9 @@
 									</div>
 									<input type="checkbox" name="RT" id="sysRT" onchange="disableTime('#sys')"/> <label for="sysRT">Real-Time Sampling</label><br>
 								</div>
+
+							</div>
+							<div style="width:40%;">
 							</div>
 						</div>
 					</span>
@@ -181,7 +157,7 @@
 						<div id="configNetworkPortal" data-options="region:'center', border:'false'" style="height:500px">
 							<div style="width:20%;">
 								<div title="Select Node(s)" data-options="collapsible:'true'" style="text-align:left;height:340px;padding:5px;">
-									<input type="checkbox" name="netNode1" id="netNode1" /> <label for="netNode1">Node 1</label><br>
+									<input type="checkbox" name="netNode1" id="netNode1" checked="true" /> <label for="netNode1">Node 1</label><br>
 									<input type="checkbox" name="netNode2" id="netNode2" /> <label for="netNode2">Node 2</label><br>
 									<input type="checkbox" name="netNode3" id="netNode3" /> <label for="netNode3">Node 3</label><br>
 									<input type="checkbox" name="netNode4" id="netNode4" /> <label for="netNode4">Node 4</label><br>
@@ -197,26 +173,9 @@
 									<br>
 									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="unSelectAll('netNode')">(Un)Select All</a>
 								</div>
-								<div title="Save/Load" data-options="collapsible:'true', iconCls:'icon-save'" style="height:100px;padding:10px;">
-									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="load()">Load</a><br>
-									<a class="easyui-linkbutton" href="javascript:void(0)" onclick="save()">Save</a>
-								</div>
 							</div>
 							<div style="width:40%;">
-								<div title="Choose Units" data-options="collapsible:'true'" style="height:200px;">
-									<form name="units">
-										<input type="radio" name="MHz" value="MHz"/>MHz<br>
-										<input type="radio" name="KHz" value="KHz"/>KHz<br>
-										<input type="radio" name="Hz" value="Hz"/>Hz<br>
-									</form>
-								</div>
-								<div title="Other" data-options="collapsible:'true'" style="height:200px;">
-									<input type="checkbox" name="netPresentTooltips" id="netPresentTooltips" /> <label for="netPresentTooltips">Present Tooltips</label><br>
-									<input type="checkbox" name="netShowEffects" id="netShowEffects" /> <label for="netShowEffects">Show Effects and Animations</label><br>
-								</div>
-							</div>
-							<div style="width:40%;">
-								<div title="Time Range" data-options="collapsible:'true', iconCls:'icon-calendar'" style="height:200px;padding:5px;">
+<div title="Time Range" data-options="collapsible:'true', iconCls:'icon-calendar'" style="height:200px;padding:5px;">
 									<div style="width:170px;">
 										<label for="netfrom">From</label>
 										<input type="text" id="netfrom" name="netfrom" require/>
@@ -226,6 +185,9 @@
 									</div>
 									<input type="checkbox" name="RT" id="netRT" onchange="disableTime('#net')"/> <label for="netRT">Real-Time Sampling</label><br>
 								</div>
+							</div>
+							<div style="width:40%;">
+								
 							</div>
 						</div>
 					</span>
@@ -272,12 +234,6 @@
 									Node 12: missing<br>
 									Node 13: missing<br>
 								</div>
-								<div title="Autonomy" data-options="collapsible:'true'" style="height:100px;padding:5px;">
-									Power Autonomy
-								</div>
-								<div title="Temperature" data-options="collapsible:'true'" style="height:100px;padding:5px;">
-									Temperature
-								</div>
 							</div>
 							<div style="width:40%;">
 								<div title="Node Status" data-options="collapsible:'true'" style="height:220px;padding:5px;">
@@ -294,9 +250,6 @@
 									Node 11: OK<br>
 									Node 12: OK<br>
 									Node 13: OK<br>
-								</div>
-								<div title="Performance" data-options="collapsible:'true'" style="height:200px;padding:5px;">
-									Performance metrics
 								</div>
 							</div>
 							<div style="width:40%;">
@@ -341,10 +294,6 @@
 					<section>
 						<img alt="Miavita" src="./images/logo_miavita.gif" style="width:193px; height:80px;">
 						<img alt="INESC-ID" src="./images/logo_inescid_2.gif" style="width:189px; height:100px;">
-					
-						CNM - TagusPark
-					
-						<img alt="IST" src="./images/Logo_IST_color.jpg" style="width:100px; height:204px;">
 					</section>
 				</section>
 			</section>
