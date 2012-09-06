@@ -248,9 +248,6 @@ function drawnet(node) {
 		};
 
 		options.series =[{
-				name: 'Retries',
-				data: retrieveData(node, Parameter.retries)
-				}, {
 				name: 'Fails',
 				data: retrieveData(node, Parameter.fails)
 		}];

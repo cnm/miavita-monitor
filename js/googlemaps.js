@@ -1,53 +1,61 @@
 
-/*
-
-#########################################
-#					#
-#		Maps			#
-#					#
-#########################################
-
+/*		Maps
+*
+*	    Duarte Barbosa
+*	duarte.barbosa@ist.utl.pt
 */
 
 var googleInit = false;
-		  
+var googleMarker = new Array(13);
+var map, infoWindow;
+
+var onMarkerClick = function() {
+				var marker = this;
+				var latLng = marker.getPosition();
+
+				infoWindow.setContent('<h3>Marker position is:</h3>' + latLng.lat() + ', ' + latLng.lng()+'<br>');
+				infoWindow.open(map, marker);
+};
+
+function addMarker(node, lat, lng){
+	googleMarker[node] = new google.maps.Marker({
+					      map: map,
+					      position: new google.maps.LatLng(lat,lng)
+	});
+	google.maps.event.addListener(googleMarker[node], 'click', onMarkerClick);
+}
+
+function removeMarker(node) {
+	googleMarker[node].setMap(null);
+}
+
 function googleInitialize() {
   	if(googleInit == false){
 		googleInit = true;
 
-		var latlng = new google.maps.LatLng(38.736691,-9.302105);
+		var latlng = new google.maps.LatLng(gpsLat[1],gpsLng[1]); //center of the map - node 1
 		var myOptions = {
 				      zoom: 18,
 				      center: latlng,
 				      mapTypeId: google.maps.MapTypeId.HYBRID
 		};
-		var map = new google.maps.Map(document.getElementById("googleMaps"), myOptions);
-		var infoWindow = new google.maps.InfoWindow;
-		var onMarkerClick = function() {
-			var marker = this;
-			var latLng = marker.getPosition();
+		
+		map = new google.maps.Map(document.getElementById("googleMaps"), myOptions);
+		infoWindow = new google.maps.InfoWindow;
 
-			infoWindow.setContent('<h3>Marker position is:</h3>' +
-						  latLng.lat() + ', ' + latLng.lng()+'<br><a href="#node10">Node 10</a>');
-
-			infoWindow.open(map, marker);
-		};
-	
 		google.maps.event.addListener(map, 'click', function() {
 							      infoWindow.close();
 		});
 
-		var marker1 = new google.maps.Marker({
-						      map: map,
-						      position: new google.maps.LatLng(38.736691,-9.302105)
-		});
+		//addMarker(1, 38.736691,-9.302105); //tagus
+		//addMarker(2, 38.736642,-9.138671);
+	}
 	
-		var marker2 = new google.maps.Marker({
-						      map: map,
-						      position: new google.maps.LatLng(38.736642,-9.138671)
-		});
-	
-		google.maps.event.addListener(marker1, 'click', onMarkerClick);
-		google.maps.event.addListener(marker2, 'click', onMarkerClick);
+	for(var i = 1; i <= 13; i++){
+		if(gpsLat[i] != 'N/A')
+			addMarker(i, gpsLat[i], gpsLng[i]);
+		else
+			removeMarker(i);
 	}
 }
+

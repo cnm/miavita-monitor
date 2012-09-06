@@ -41,7 +41,7 @@ function helper(){
 }
 
 function refresh(){
-	setup();
+	readAllData();
 	setTimeout(function(){helper()},1000);
 }
 
@@ -148,8 +148,6 @@ function addPanel(node){
 	var height = $(netViewPortal).height();
 	var p = $('<div/>').appendTo('body');
 	var id, content;
-	
-	//alert("width: " + width + "\n innerWidth: " + $(netViewPortal).innerWidth() + "\n outerWidth: " + $(netViewPortal).outerWidth());
 	
 	if(contentShown == "#sys"){
 		id = 'sysPanelNode' + node;

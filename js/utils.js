@@ -22,7 +22,7 @@ Array.prototype.min = function() {
 }
 
 function init(){
-	setup();
+	readAllData();
 //	startSpinner();
 	visualTweaker();
 	retrieveDates();

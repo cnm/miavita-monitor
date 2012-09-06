@@ -22,11 +22,13 @@ function readData(id) {
 	  		});
 }
 
-function readData1() {
+function readAllData() {
 	$.get("miavita.json", function(data){
-	    			rawdata = jQuery.parseJSON(data);
-				fillContents();
-				retrieveDates();
+	    			for(var i = 0; i < 13; i++)
+					node[i] = new Array();
+
+	    			fillContents(jQuery.parseJSON(data));
+				//retrieveDates();
 	  		});
 }
 
@@ -39,11 +41,64 @@ function setup() {
 	readData(3);
 }
 
+var battery = new Array(13);
+
+function batteryWriter(){
+
+	var txt = '';
+		
+	for(var i = 1; i <= 13; i++){
+		txt += 'Node ' + i + ': ' + battery[i] + '%<br>';
+	}
+
+//	$("#nodeStatus").text(txt);
+	document.getElementById('nodeBattery').innerHTML = txt;
+}
+
+var gpsLat = new Array(13);
+var gpsLng = new Array(13);
+
+function gpsWriter(){
+
+	var txt = '';
+		
+	for(var i = 1; i <= 13; i++){
+		txt += 'Node ' + i + ': ' + gpsLat[i] + ',' + gpsLng[i] + '<br>';
+	}
+
+//	$("#nodeStatus").text(txt);
+	document.getElementById('nodeGPS').innerHTML = txt;
+}
+
+var status = new Array(13);
+
+function statusWriter(){
+
+	var txt = '';
+		
+	for(var i = 1; i <= 13; i++){
+		txt += 'Node ' + i + ': ' + status[i] + '<br>';
+	}
+
+//	$("#nodeStatus").text(txt);
+	document.getElementById('nodeStatus').innerHTML = txt;
+}
+
+
 function fillContents(rawdata) {
+
+	for(var i = 1; i <= 13; i++){
+		gpsLat[i] = 'N/A';
+		gpsLng[i] = 'N/A';
+		status[i] = 'N/A';
+		battery[i] = 'N/A';
+	}
 
 	for(var k in rawdata) {
 		var index = rawdata[k].node_id;
 		var packet = rawdata[k].sequence;
+
+		status[index] = 'OK';
 
 		node[index][packet] = new Array(9);
 
@@ -55,7 +110,14 @@ function fillContents(rawdata) {
 		node[index][packet][6] = rawdata[k].sample_1 * 0.0003; //0.000298023
 		node[index][packet][7] = rawdata[k].sample_2 * 0.0003;
 		node[index][packet][8] = rawdata[k].sample_3 * 0.0003;
-		node[index][packet][9] = rawdata[k].sample_4;
+		node[index][packet][9] = rawdata[k].sample_4 * 0.000011//0.000010582;
+		
+		if(!(packet % 1000))
+			gpsLat[index] = rawdata[k].sample_4;
+		else if (!(packet % 1001))
+			gpsLng[index] = rawdata[k].sample_4;
+		else
+			battery[index] = node[index][packet][9];
 	}
 }
 
