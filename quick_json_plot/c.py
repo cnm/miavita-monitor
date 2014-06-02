@@ -21,6 +21,7 @@ import pdb
 # path = "clean_battery_disk.json"
 path = "clean_transforme_mem.json"
 path = "clean_transformer_disk.json"
+path = "clean_transformer_wifi.json"
 
 def read_and_order_data(path):
     f = open(path)
