@@ -26,7 +26,12 @@ path = "clean_transformer_wifi.json"
 def read_and_order_data(path):
     f = open(path)
     packet_l = []
+    skip_n_lines = 0               # Defines how many lines to skip in the start of the file
     for l in f.readlines():
+
+        if skip_n_lines > 0:
+            skip_n_lines -= 1
+            continue
 
         try:
             s         = l.split('"')
@@ -61,6 +66,7 @@ def calculate_deltas(ord_l):
     base_ts = ord_l[0]["ts"]
 
     SAMPLING_RATE_IN_US = 1000000 / 50
+
     def calculate_difference_to_base(packet):
         delta_seq = packet["seq"] - base_seq
         correct_time = base_ts + (delta_seq * SAMPLING_RATE_IN_US)
@@ -95,7 +101,7 @@ def draw(ord_l, gaps):
 
     axScatter = plt.subplot(3, 1, 1)
 
-    number_samples=0
+    number_samples=100
     axScatter.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['a'] for i in ord_l[-number_samples:]], s=2, color='r', label='ch1')
     # axScatter.scatter(time_l[-number_samples:], b_l[-number_samples:], s=2, color='c', label='ch2')
     # axScatter.scatter(time_l[-number_samples:], c_l[-number_samples:], s=2, color='y', label='ch3')
@@ -116,7 +122,7 @@ def draw(ord_l, gaps):
     plt.title("Timestamp deltas")
 
     gaps_draw = plt.subplot(3, 1, 3)
-    gaps_draw.plot([i[0] for i in gaps], [i[1] for i in gaps], color='b', marker='.', label='gaps')
+    gaps_draw.plot([i[0] for i in gaps[-number_samples:]], [i[1] for i in gaps[-number_samples:]], color='b', marker='.', label='gaps')
     gaps_draw.set_ylim(-0.5, 1.5)
 
     plt.draw()
