@@ -103,9 +103,9 @@ def draw(ord_l, gaps):
 
     number_samples=100
     axScatter.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['a'] for i in ord_l[-number_samples:]], s=2, color='r', label='ch1')
-    # axScatter.scatter(time_l[-number_samples:], b_l[-number_samples:], s=2, color='c', label='ch2')
-    # axScatter.scatter(time_l[-number_samples:], c_l[-number_samples:], s=2, color='y', label='ch3')
-    # axScatter.scatter(time_l[-number_samples:], d_l[-number_samples:], s=2, color='g', label='ch4')
+    axScatter.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['b'] for i in ord_l[-number_samples:]], s=2, color='c', label='ch2')
+    axScatter.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['c'] for i in ord_l[-number_samples:]], s=2, color='y', label='ch3')
+    axScatter.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['d'] for i in ord_l[-number_samples:]], s=2, color='g', label='ch4')
     plt.ylim(-1000000, 1000000)
     plt.legend()
     axScatter.set_xlabel("Sequence Packet")
