@@ -22,12 +22,24 @@ import pdb
 path = "clean_transforme_mem.json"
 path = "clean_transformer_disk.json"
 path = "clean_transformer_wifi.json"
+path = "miavita.json_4HZ"
+path = "miavita.json"
+path = "testes_json/09_07_2014_14_37_pequeno.json"
+path = "testes_json/09_07_2014_14_20_grande.json"
+path = "test_mv_11_07_2014_17_49.json"
 
 def read_and_order_data(path):
     f = open(path)
     packet_l = []
     skip_n_lines = 0               # Defines how many lines to skip in the start of the file
+    i = 0
+    last_seq = 0
+
     for l in f.readlines():
+        i += 1
+
+        if (i % 300 != 0):
+            continue
 
         if skip_n_lines > 0:
             skip_n_lines -= 1
@@ -35,7 +47,14 @@ def read_and_order_data(path):
 
         try:
             s         = l.split('"')
-            seq       = int(s[1].split(":")[1])
+            seq       = float(s[1].split(":")[1])
+            seq       = seq / 50.0 / 60.0 / 60.0 + 7.5
+            if seq < last_seq:
+                print last_seq
+                print seq
+                print i
+            last_seq = seq
+
             timestamp = int(s[4][1:-1])
             channel_a = int(s[6][1:-1])
             channel_b = int(s[8][1:-1])
@@ -85,6 +104,7 @@ def calculate_gaps(p_l):
 
     it = 0
     for seq in xrange(first_seq, last_seq):
+
         # Search if the sequence number has a packet
         if p_l[it]["seq"] == seq:
             it += 1
@@ -101,25 +121,27 @@ def draw(ord_l, gaps):
 
     axScatter = plt.subplot(3, 1, 1)
 
-    number_samples=100
-    axScatter.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['a'] for i in ord_l[-number_samples:]], s=2, color='r', label='ch1')
-    axScatter.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['b'] for i in ord_l[-number_samples:]], s=2, color='c', label='ch2')
-    axScatter.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['c'] for i in ord_l[-number_samples:]], s=2, color='y', label='ch3')
-    axScatter.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['d'] for i in ord_l[-number_samples:]], s=2, color='g', label='ch4')
-    plt.ylim(-1000000, 1000000)
+    number_samples=0
+    # axScatter.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['a'] for i in ord_l[-number_samples:]], s=2, color='r', label='ch1')
+    axScatter.scatter([i['seq'] % 24 for i in ord_l[-number_samples:]], [i['d'] for i in ord_l[-number_samples:]], s=2, color='r', label='ch1')
+    # axScatter.scatter(time_l[-number_samples:], b_l[-number_samples:], s=2, color='c', label='ch2')
+    # axScatter.scatter(time_l[-number_samples:], c_l[-number_samples:], s=2, color='y', label='ch3')
+    # axScatter.scatter(time_l[-number_samples:], d_l[-number_samples:], s=2, color='g', label='ch4')
+    plt.ylim(-9000000, 9000000)
     plt.legend()
     axScatter.set_xlabel("Sequence Packet")
     axScatter.set_ylabel("Voltage")
     plt.title("Channels Values")
 
-    time_plot = plt.subplot(3, 1, 2)
-    time_plot.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['delta'] for i in ord_l[-number_samples:]], s=1, color='r', label='delta')
-    time_plot.set_xlabel("Sequence Packet")
-    time_plot.set_ylabel("Delta to referencial")
-    ax2 = time_plot.twinx()
-    ax2.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['ts'] for i in ord_l[-number_samples:]], s=2, color='g', label='Timestamp')
-    ax2.set_ylabel("Kernel time")
-    plt.title("Timestamp deltas")
+
+    # time_plot = plt.subplot(3, 1, 2)
+    # time_plot.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['delta'] for i in ord_l[-number_samples:]], s=1, color='r', label='delta')
+    # time_plot.set_xlabel("Sequence Packet")
+    # time_plot.set_ylabel("Delta to referencial")
+    # ax2 = time_plot.twinx()
+    # ax2.scatter([i['seq'] for i in ord_l[-number_samples:]], [i['ts'] for i in ord_l[-number_samples:]], s=2, color='g', label='Timestamp')
+    # ax2.set_ylabel("Kernel time")
+    # plt.title("Timestamp deltas")
 
     gaps_draw = plt.subplot(3, 1, 3)
     gaps_draw.plot([i[0] for i in gaps[-number_samples:]], [i[1] for i in gaps[-number_samples:]], color='b', marker='.', label='gaps')
@@ -132,5 +154,6 @@ def draw(ord_l, gaps):
 packet_l = read_and_order_data(path)
 calculate_deltas(packet_l)
 gaps = calculate_gaps(packet_l)
+print "all_calculated"
 draw(packet_l, gaps)
 
